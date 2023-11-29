@@ -1,0 +1,107 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700;800;900&display=swap');
+
+.side-bar-ctn {
+  font-family: 'Noto Sans';
+}
+.side-bar-flex-ctn {
+  height: 100%;
+}
+.logo img {
+  width: 110px;
+  padding: 10px;
+  margin-left: 1rem;
+  display: block;
+ 
+}
+
+aside ul {
+  list-style: none;
+}
+
+img {
+  width: 30px;
+}
+
+aside {
+  width: 100px;
+  /* background-color: #fff; */
+  height: 100%;
+  text-align: center;
+  border-right: 1px solid #d4d5dd;
+
+}
+aside ul p {
+  font-size: 14px;
+}
+
+aside li {
+  display: block;
+  width: 100%;
+  height: 70px;
+  padding: 10px;
+}
+
+aside li:hover {
+  background-color: #e1e4eb;
+}
+
+aside .text {
+  padding: 40px 10px 20px;
+  text-transform: uppercase;
+  font-weight: 800;
+  font-size: 13px;
+}
+
+/* 
+.circle {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 3px solid #414147;
+  text-align: center;
+  line-height: 30px;
+  background-color: #f3f4f6;
+  position: relative;
+}
+
+.circle::after {
+  content: ' ';
+  background: #414147;
+  display: inline-block;
+  position: absolute;
+  width: 3px;
+  height: 24px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  top: 17px;
+}
+
+.circle.last::after {
+  display: none;
+}
+
+.active {
+  background-color: #414147;
+}
+
+.bold {
+  font-weight: 600;
+}
+
+li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  z-index: 2;
+}
+
+li + li {
+  padding-top: 20px;
+}
+
+.navbarEl {
+  color: #000;
+  text-decoration: none;
+}
+ */
