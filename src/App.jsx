@@ -27,3 +27,16 @@ export default App;
 // pagination
 // fetch data
 // cart logic
+
+// framer motion for cv to appear
+// swiper progress bar multiple items single slider
+// card falling animation
+// cv carousel
+// time bar auto shifting
+// responsive design
+
+// authentication
+// resume feature
+// download feature
+// drag and drop
+// reform styling
