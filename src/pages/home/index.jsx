@@ -1,9 +1,78 @@
-import logo1 from "../assets/images/logo1.svg";
-import logo2 from "../assets/images/logo20.svg";
-import logo3 from "../assets/images/logo21.svg";
-import logo4 from "../assets/images/logo11.svg";
-import logo5 from "../assets/images/logo6.png";
-import Logo from "../assets/images/hired-logo.svg";
+import logo1 from "@/assets/images/logo1.svg";
+import logo2 from "@/assets/images/logo20.svg";
+import logo3 from "@/assets/images/logo21.svg";
+import logo4 from "@/assets/images/logo11.svg";
+import logo5 from "@/assets/images/logo6.png";
+import Logo from "@/assets/images/hired-logo.svg";
+
+import "swiper/scss";
+import "swiper/scss/navigation";
+import "swiper/scss/pagination";
+import "swiper/scss/scrollbar";
+
+import ReviewSlider from "../../components/ReviewSlider";
+const templates = [
+  {
+    id: 0,
+    location: "Paris",
+    users: 27000,
+    url: "https://s3.resume.io/cdn-cgi/image/width=816,format=auto/uploads/local_template_image/image/764/persistent-resource/paris-cover-letter-templates.jpg",
+  },
+  {
+    id: 1,
+    location: "Berlin",
+    users: 32000,
+    url: "https://s3.resume.io/cdn-cgi/image/width=816,format=auto/uploads/local_template_image/image/765/persistent-resource/berlin-cover-letter-templates.jpg",
+  },
+  {
+    id: 2,
+    location: "Geneva",
+    users: 3200,
+    url: "https://s3.resume.io/cdn-cgi/image/width=816,format=auto/uploads/local_template_image/image/2839/persistent-resource/geneva-cover-letter-templates.jpg",
+  },
+  {
+    id: 3,
+    location: "Vancouver",
+    users: 34000,
+    url: "https://s3.resume.io/cdn-cgi/image/width=816,format=auto/uploads/local_template_image/image/732/persistent-resource/vancouver-cover-letter-templates.jpg",
+  },
+  {
+    id: 4,
+    location: "Tokyo",
+    users: 34000,
+    url: "https://s3.resume.io/cdn-cgi/image/width=816,format=auto/uploads/local_template_image/image/744/persistent-resource/tokyo-cover-letter-templates.jpg",
+  },
+  {
+    id: 5,
+    location: "Milan",
+    users: 41000,
+    url: "https://s3.resume.io/cdn-cgi/image/width=816,format=auto/uploads/local_template_image/image/771/persistent-resource/milan-cover-letter-templates.jpg",
+  },
+  {
+    id: 6,
+    location: "Lisbon",
+    users: 20000,
+    url: "https://s3.resume.io/cdn-cgi/image/width=816,format=auto/uploads/local_template_image/image/2808/persistent-resource/lisbon-cover-letter-templates.jpg",
+  },
+  {
+    id: 7,
+    location: "Barcelona",
+    users: 23000,
+    url: "https://s3.resume.io/cdn-cgi/image/width=816,format=auto/uploads/local_template_image/image/780/persistent-resource/barcelona-cover-letter-templates.jpg",
+  },
+  {
+    id: 8,
+    location: "Copenhagen",
+    users: 18000,
+    url: "https://s3.resume.io/cdn-cgi/image/width=816,format=auto/uploads/local_template_image/image/2307/persistent-resource/copenhagen-cover-letter-templates.jpg",
+  },
+  {
+    id: 0,
+    location: "Chicago",
+    users: 15000,
+    url: "https://s3.resume.io/cdn-cgi/image/width=816,format=auto/uploads/local_template_image/image/2312/persistent-resource/chicago-cover-letter-templates.jpg",
+  },
+];
 
 const Home = () => {
   return (
@@ -69,48 +138,7 @@ const Home = () => {
             <p className="sm-text">based on 47,905 reviews</p>
           </div>
           <div className="detailed-wrapper">
-            <div className="detailed">
-              {[...Array(3)].map((_, i) => (
-                <div className="individual" key={i}>
-                  <div className="review">
-                    <div className="stars-wrapper">
-                      {[...Array(5)].map((_, i) => (
-                        <span className="stars" key={i}>
-                          <img
-                            src="https://resume.io/assets/media/star-green20e9737f3d819bbc6c7b.svg"
-                            alt=""
-                            className="stars"
-                          />
-                        </span>
-                      ))}
-                    </div>
-                    <h3 className="short-desc">
-                      The templates are immaculate and really easy to use
-                    </h3>
-                    <p className="long-desc">
-                      A very easy to use and intuitive platform to create a high
-                      quality CV. The additional CV review makes a great impact
-                      in composing a successful CV that puts you on top of other
-                      applicants.
-                    </p>
-                    <p className="bottom-info sm-text">
-                      Mike Alexandru • about 1 hour ago
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-            <div className="scroll">
-              <div className="button-wrapper">
-                <button className="back">
-                  <i className="fa fa-chevron-left" aria-hidden="true"></i>
-                </button>
-                <button className="forward">
-                  <i className="fa fa-chevron-right" aria-hidden="true"></i>
-                </button>
-              </div>
-              <div className="scrollBar"></div>
-            </div>
+            <ReviewSlider />
           </div>
         </div>
       </div>
@@ -229,7 +257,7 @@ const Home = () => {
                   alt="pinterest log"
                 />
               </span>
-              <span className="instagram"> 
+              <span className="instagram">
                 <img
                   src="https://resume.io/assets/landing/footer/instagram-1328b79f86cad877a2b0717880ff52eae22b37410f127037b1493c5c8a38f203.svg"
                   alt="instagram log"
@@ -264,7 +292,7 @@ const Home = () => {
                 <li>Blog</li>
               </ul>
             </div>
-          
+
             <div className="category">
               <p className="title">OUR COMPANY</p>
               <ul>
@@ -279,11 +307,11 @@ const Home = () => {
             <div className="category">
               <p className="title">SUPPORT</p>
               <ul>
-              <li>FAQ</li>
-              <li>Contact Us</li>
-              <li>Terms of Service</li>
-              <li>Privacy</li>
-              <li>Right of Withdrawal</li>
+                <li>FAQ</li>
+                <li>Contact Us</li>
+                <li>Terms of Service</li>
+                <li>Privacy</li>
+                <li>Right of Withdrawal</li>
               </ul>
             </div>
           </div>
@@ -291,18 +319,18 @@ const Home = () => {
         <div className="bottom">
           <p>
             <span>
-              <img
-                src={Logo}
-                alt="flag"
-              />
+              <img src={Logo} alt="flag" />
               International
             </span>
           </p>
-          <img className="verified" src="https://resume.io/assets/landing/shared/cprw-c78f635373c794595d7e68d118f7aefb509aee249ff8c516a40cc4e450edcf3c.png" alt="" />
+          <img
+            className="verified"
+            src="https://resume.io/assets/landing/shared/cprw-c78f635373c794595d7e68d118f7aefb509aee249ff8c516a40cc4e450edcf3c.png"
+            alt=""
+          />
           <p className="sm-text copyright">Copyright 2023 • HIRED</p>
         </div>
       </div>
-
     </div>
   );
 };
