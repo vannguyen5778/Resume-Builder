@@ -10,9 +10,11 @@ import "swiper/scss/navigation";
 import "swiper/scss/pagination";
 import "swiper/scss/scrollbar";
 import "swiper/scss/effect-coverflow"
+import "swiper/scss/autoplay"
 
 import ReviewSlider from "./ReviewSlider";
 import Carousel from "./TemplateCarousel";
+import AutoplaySlider from "./AutoplaySlider";
 
 const Home = () => {
   return (
@@ -84,7 +86,7 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="how-to section">
+      <div className="instructions section">
         <img
           src="https://resume.io/assets/landing/home/how/icon-580ea8bcc1e527c9acb382f70dbe3b5f81dc9a03428cfcf7ee715fd4266afc0c.svg"
           alt=""
@@ -124,7 +126,7 @@ const Home = () => {
             </div>
             <div className="image">
               <img
-                src="https://resume.io/assets/landing/home/how/sign_up-a585240eda115cb3f8330e8a6c4150b0e758a8eab31f2c4b5f80fe19bbcc4438.svg"
+                src="https://img.freepik.com/free-vector/profile-data-concept-illustration_114360-3342.jpg?w=740&t=st=1701580419~exp=1701581019~hmac=ada53bb1755692910cdf3db7da107f7d5120a6eca2ce47d3eb8e84f307b9bf9b"
                 alt=""
               />
             </div>
@@ -271,7 +273,10 @@ const Home = () => {
         </div>
       </div>
     </div>
-    
+    <div className="autoplay-wrap">
+
+    <AutoplaySlider />
+    </div>
 </>
   );
 };
