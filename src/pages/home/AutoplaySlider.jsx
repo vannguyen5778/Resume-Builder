@@ -17,7 +17,7 @@ const instructions = [
     boxTitle: "Achieve beauty with ease",
     boxContent:
       "The resume builder provides a user-friendly interface and step-by-step guidance to help you create a polished, tailored resume. By following these instructions, you'll be able to build a comprehensive and impressive resume that showcases your professional background and skills effectively.",
-      url: createdIMG,
+    url: createdIMG,
   },
   {
     id: "3",
@@ -33,51 +33,59 @@ const AutoplaySlider = () => {
     <Swiper
       loop={true}
       slidesPerView={1}
-        //  spaceBetween={30}
-        //  centeredSlides={true}
+      //  spaceBetween={30}
+      //  centeredSlides={true}
       autoplay={{
         delay: 5000,
         disableOnInteraction: false,
       }}
       onSlideChange={(swiper) => console.log(swiper)}
       navigation={true}
-      pagination
+      pagination={{
+        el: ".swiper-pagination",
+        // clickable: 'false',
+        // type: 'bullets',
+        // renderBullet: function (index, className) {
+        //     return '<span className="' + className + '">' + '<em>'+'</em>' + '<i></i>' + '<b></b>'  + '</span>';
+        //   },
+      }}
       modules={[Autoplay, Pagination, Navigation]}
       className="mySwiper"
     >
       <div className="graphics">
+        {/* <div className="box-wrapper swiper-pagination"> */}
+        {/* <div className="">Hello</div> */}
+        {/* <div className={`${index===0 ? 'active' : ''} step-box`}>
+                      <h4>
+                        1. Sign Up
+                      </h4>
+                      <span className="time-bar">
+                          {index === 0 && <span className="progress"></span>}
+                      </span>
+                    </div>
+                    <div className={`${index===1 ? 'active' : ''} step-box`}>
+                      <h4>
+                        2. Create
+                      </h4>
+                      <span className="time-bar">
+                      {index === 1 && <span className="progress"></span>}
+      
+                      </span>
+                    </div>
+                    <div className={`${index===2 ? 'active' : ''} step-box`}>
+                      <h4>
+                       3. Download
+                      </h4>
+                      <span className="time-bar">
+                      {index === 2 && <span className="progress"></span>}
+      
+                      </span>
+                    </div> */}
+        {/* </div> */}
+
         {instructions.map((instruction, index) => (
-            <SwiperSlide key={index}>
-                <div className="box-wrapper">
-                    
-              <div className={`${index===0 ? 'active' : ''} step-box`}>
-                <h4>
-                  1. Sign Up
-                </h4>
-                <span className="time-bar">
-                    {index === 0 && <span className="progress"></span>}
-                </span>
-              </div>
-              <div className={`${index===1 ? 'active' : ''} step-box`}>
-                <h4>
-                  2. Create
-                </h4>
-                <span className="time-bar">
-                {index === 1 && <span className="progress"></span>}
-
-                </span>
-              </div>
-              <div className={`${index===2 ? 'active' : ''} step-box`}>
-                <h4>
-                 3. Download
-                </h4>
-                <span className="time-bar">
-                {index === 2 && <span className="progress"></span>}
-
-                </span>
-              </div>
-        </div>
-              <div className="content-box">
+          <SwiperSlide key={index}>
+            <div className="content-box">
               <div className="text-wrapper">
                 <h4>{instruction.boxTitle}</h4>
                 <p className="description">{instruction.boxContent}</p>
@@ -88,6 +96,22 @@ const AutoplaySlider = () => {
             </div>
           </SwiperSlide>
         ))}
+      </div>
+      <div className="swiper-pagination swiper-pagination-bullets swiper-pagination-horizontal">
+          {/* <div className={`${index===0 ? 'active' : ''} step-box`}>
+                      <h4>
+                        1. Sign Up
+                      </h4>
+                      <span className="time-bar">
+                          {index === 0 && <span className="progress"></span>}
+                      </span>
+                    </div> */}
+
+        <span className="swiper-pagination-bullet swiper-pagination-bullet-active">
+            Hello
+        </span>
+        <span className="swiper-pagination-bullet">Hello</span>
+        <span className="swiper-pagination-bullet"></span>
       </div>
     </Swiper>
   );
