@@ -1,81 +1,22 @@
-import logo1 from "@/assets/images/logo1.svg";
-import logo2 from "@/assets/images/logo20.svg";
-import logo3 from "@/assets/images/logo21.svg";
-import logo4 from "@/assets/images/logo11.svg";
-import logo5 from "@/assets/images/logo6.png";
-import Logo from "@/assets/images/hired-logo.svg";
+import logo1 from "../../assets/images/logo1.svg";
+import logo2 from "../../assets/images/logo20.svg";
+import logo3 from "../../assets/images/logo21.svg";
+import logo4 from "../../assets/images/logo11.svg";
+import logo5 from "../../assets/images/logo6.png";
+import Logo from "../../assets/images/hired-logo.svg";
 
 import "swiper/scss";
 import "swiper/scss/navigation";
 import "swiper/scss/pagination";
 import "swiper/scss/scrollbar";
+import "swiper/scss/effect-coverflow"
 
-import ReviewSlider from "../../components/ReviewSlider";
-const templates = [
-  {
-    id: 0,
-    location: "Paris",
-    users: 27000,
-    url: "https://s3.resume.io/cdn-cgi/image/width=816,format=auto/uploads/local_template_image/image/764/persistent-resource/paris-cover-letter-templates.jpg",
-  },
-  {
-    id: 1,
-    location: "Berlin",
-    users: 32000,
-    url: "https://s3.resume.io/cdn-cgi/image/width=816,format=auto/uploads/local_template_image/image/765/persistent-resource/berlin-cover-letter-templates.jpg",
-  },
-  {
-    id: 2,
-    location: "Geneva",
-    users: 3200,
-    url: "https://s3.resume.io/cdn-cgi/image/width=816,format=auto/uploads/local_template_image/image/2839/persistent-resource/geneva-cover-letter-templates.jpg",
-  },
-  {
-    id: 3,
-    location: "Vancouver",
-    users: 34000,
-    url: "https://s3.resume.io/cdn-cgi/image/width=816,format=auto/uploads/local_template_image/image/732/persistent-resource/vancouver-cover-letter-templates.jpg",
-  },
-  {
-    id: 4,
-    location: "Tokyo",
-    users: 34000,
-    url: "https://s3.resume.io/cdn-cgi/image/width=816,format=auto/uploads/local_template_image/image/744/persistent-resource/tokyo-cover-letter-templates.jpg",
-  },
-  {
-    id: 5,
-    location: "Milan",
-    users: 41000,
-    url: "https://s3.resume.io/cdn-cgi/image/width=816,format=auto/uploads/local_template_image/image/771/persistent-resource/milan-cover-letter-templates.jpg",
-  },
-  {
-    id: 6,
-    location: "Lisbon",
-    users: 20000,
-    url: "https://s3.resume.io/cdn-cgi/image/width=816,format=auto/uploads/local_template_image/image/2808/persistent-resource/lisbon-cover-letter-templates.jpg",
-  },
-  {
-    id: 7,
-    location: "Barcelona",
-    users: 23000,
-    url: "https://s3.resume.io/cdn-cgi/image/width=816,format=auto/uploads/local_template_image/image/780/persistent-resource/barcelona-cover-letter-templates.jpg",
-  },
-  {
-    id: 8,
-    location: "Copenhagen",
-    users: 18000,
-    url: "https://s3.resume.io/cdn-cgi/image/width=816,format=auto/uploads/local_template_image/image/2307/persistent-resource/copenhagen-cover-letter-templates.jpg",
-  },
-  {
-    id: 0,
-    location: "Chicago",
-    users: 15000,
-    url: "https://s3.resume.io/cdn-cgi/image/width=816,format=auto/uploads/local_template_image/image/2312/persistent-resource/chicago-cover-letter-templates.jpg",
-  },
-];
+import ReviewSlider from "./ReviewSlider";
+import Carousel from "./TemplateCarousel";
 
 const Home = () => {
   return (
+    <>
     <div className="home">
       <div className="intro section">
         <p className="title">ONLINE RESUME BUILDER</p>
@@ -143,44 +84,6 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="callToAction ">
-        <div className="content-wrapper ">
-          <h2>
-            User-friendly. Professional. Effective. Try our CV builder today!
-          </h2>
-          <p className="description">
-            How long does it take to write a resume? Hours? Days? With our
-            resume maker you can be done in minutes. Create a convincing and
-            effective application letter in several clicks. Use our
-            pre-generated phrases, choose a design, fill in your details and
-            ideas. Fast and simple.
-          </p>
-          <button className="button">Try it now!</button>
-        </div>
-        <img
-          src="https://resume.io/assets/landing/home/letter-maker/visual-13cdbab63916313dab4caff704097bae2aafc990be5e86f9cc50260bffe6bc75.svg"
-          alt=""
-        />
-      </div>
-
-      <div className="templates">
-        <div className="template-wrapper section">
-          <img
-            src="https://resume.io/assets/landing/home/templates/icon-078b625c05982debafe1358b056b0c40312d1c2ed4d17e21f03e83163353e45a.svg"
-            alt=""
-          />
-          <h2>Proven resume templates</h2>
-          <p className="description">
-            Win over employers and recruiters by using one of our 27
-            professionally-designed cover letter templates. Download to Word or
-            PDF.
-          </p>
-          <h3>Boston</h3>
-          <p className="sm-text">12,000+ users chose this template</p>
-          <div className="carousel"></div>
-        </div>
-      </div>
-
       <div className="how-to section">
         <img
           src="https://resume.io/assets/landing/home/how/icon-580ea8bcc1e527c9acb382f70dbe3b5f81dc9a03428cfcf7ee715fd4266afc0c.svg"
@@ -228,6 +131,42 @@ const Home = () => {
           </div>
         </div>
       </div>
+
+      <div className="templates">
+        <div className="template-wrapper section">
+          <img
+            src="https://resume.io/assets/landing/home/templates/icon-078b625c05982debafe1358b056b0c40312d1c2ed4d17e21f03e83163353e45a.svg"
+            alt=""
+          />
+          <h2>Proven resume templates</h2>
+          <p className="description">
+            Win over employers and recruiters by using one of our 27
+            professionally-designed cover letter templates. Download to Word or
+            PDF.
+          </p>
+          <Carousel />
+        </div>
+      </div>
+      <div className="callToAction ">
+        <div className="content-wrapper ">
+          <h2>
+            User-friendly. Professional. Effective. Try our CV builder today!
+          </h2>
+          <p className="description">
+            How long does it take to write a resume? Hours? Days? With our
+            resume maker you can be done in minutes. Create a convincing and
+            effective application letter in several clicks. Use our
+            pre-generated phrases, choose a design, fill in your details and
+            ideas. Fast and simple.
+          </p>
+          <button className="button">Try it now!</button>
+        </div>
+        <img
+          src="https://resume.io/assets/landing/home/letter-maker/visual-13cdbab63916313dab4caff704097bae2aafc990be5e86f9cc50260bffe6bc75.svg"
+          alt=""
+        />
+      </div>
+      
 
       <div className="join section">
         <h1>
@@ -332,6 +271,8 @@ const Home = () => {
         </div>
       </div>
     </div>
+    
+</>
   );
 };
 
