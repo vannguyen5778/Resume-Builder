@@ -1,5 +1,5 @@
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Pagination, Navigation } from "swiper/modules";
+import { Autoplay, Pagination } from "swiper/modules";
 import createdIMG from "../../assets/images/create.png";
 import downloadIMG from "../../assets/images/downloadIMG.png";
 const instructions = [
@@ -33,56 +33,28 @@ const AutoplaySlider = () => {
     <Swiper
       loop={true}
       slidesPerView={1}
-      //  spaceBetween={30}
-      //  centeredSlides={true}
       autoplay={{
         delay: 5000,
         disableOnInteraction: false,
       }}
-      onSlideChange={(swiper) => console.log(swiper)}
-      navigation={true}
       pagination={{
         el: ".swiper-pagination",
-        // clickable: 'false',
-        // type: 'bullets',
-        // renderBullet: function (index, className) {
-        //     return '<span className="' + className + '">' + '<em>'+'</em>' + '<i></i>' + '<b></b>'  + '</span>';
-        //   },
+        clickable: true,
+        renderBullet: function (index, className) {
+            return `
+            <div class="step-box ${className}">
+              <h4>${index + 1}. ${instructions[index].tabName}</h4>
+              <span class="time-bar">
+              <span class="progress"></span>
+              </span>
+            </div>
+          `;
+        },
       }}
-      modules={[Autoplay, Pagination, Navigation]}
+      modules={[Autoplay, Pagination]}
       className="mySwiper"
     >
       <div className="graphics">
-        {/* <div className="box-wrapper swiper-pagination"> */}
-        {/* <div className="">Hello</div> */}
-        {/* <div className={`${index===0 ? 'active' : ''} step-box`}>
-                      <h4>
-                        1. Sign Up
-                      </h4>
-                      <span className="time-bar">
-                          {index === 0 && <span className="progress"></span>}
-                      </span>
-                    </div>
-                    <div className={`${index===1 ? 'active' : ''} step-box`}>
-                      <h4>
-                        2. Create
-                      </h4>
-                      <span className="time-bar">
-                      {index === 1 && <span className="progress"></span>}
-      
-                      </span>
-                    </div>
-                    <div className={`${index===2 ? 'active' : ''} step-box`}>
-                      <h4>
-                       3. Download
-                      </h4>
-                      <span className="time-bar">
-                      {index === 2 && <span className="progress"></span>}
-      
-                      </span>
-                    </div> */}
-        {/* </div> */}
-
         {instructions.map((instruction, index) => (
           <SwiperSlide key={index}>
             <div className="content-box">
@@ -97,22 +69,8 @@ const AutoplaySlider = () => {
           </SwiperSlide>
         ))}
       </div>
-      <div className="swiper-pagination swiper-pagination-bullets swiper-pagination-horizontal">
-          {/* <div className={`${index===0 ? 'active' : ''} step-box`}>
-                      <h4>
-                        1. Sign Up
-                      </h4>
-                      <span className="time-bar">
-                          {index === 0 && <span className="progress"></span>}
-                      </span>
-                    </div> */}
-
-        <span className="swiper-pagination-bullet swiper-pagination-bullet-active">
-            Hello
-        </span>
-        <span className="swiper-pagination-bullet">Hello</span>
-        <span className="swiper-pagination-bullet"></span>
-      </div>
+      <div className="swiper-pagination"></div>
+      <div className="time"><div className="progress"></div></div>
     </Swiper>
   );
 };

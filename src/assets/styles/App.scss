@@ -322,68 +322,116 @@
       h2 {
         max-width: 700px;
       }
-      .graphics {
-        width: 80%;
-        // background-color: #8290aa;
-        border-radius: 5px;
-        padding: 40px 0;
-        .box-wrapper {
-          display: flex;
-          gap: 10px;
-          justify-content: space-around;
-          text-align: start;
+      .mySwiper {
+        margin-top: 80px;
+        height: 550px;
+        width: 800px;
+        .swiper-pagination-fraction,
+        .swiper-pagination-custom,
+        .swiper-horizontal > .swiper-pagination-bullets,
+        .swiper-pagination-bullets.swiper-pagination-horizontal {
+          top: 0px;
+        }
 
-          .step-box {
-            display: flex;
-            background-color: #fff;
-            width: 100%;
-            border-top-left-radius: 5px;
-            border-top-right-radius: 5px;
-            gap: 10px;
-            flex-direction: column;
-            justify-content: center;
-            height: 70px;
-            padding: 0 20px;
-            // opacity: .5;
-            h4 {
-              font-size: 20px;
-            }
-            .time-bar {
-              position: relative;
-              height: 3px;
-              border-radius: 5px;
-              width: 100%;
-              background-color: rgb(0, 0, 0, 0.1);
-              .progress {
-                position: absolute;
-                background-color: $blue;
-                border-radius: 5px;
-                height: 3px;
-                top: 0;
-                left: 0;
-                width: 20%;
-              }
-            }
+        .swiper-pagination {
+          position: absolute;
+          top: 0px;
+          margin: 0 auto;
+          width: 100% !important;
+          display: flex;
+          justify-content: space-between;
+        }
+
+        .swiper-pagination-bullet {
+          flex: 1;
+          width: auto;
+          height: 30px;
+          text-align: center;
+          line-height: 30px;
+          font-size: 12px;
+          color: #000;
+          background-color: rgb(240, 243, 250);
+
+          // background: rgba(0, 0, 0, 0.2);
+        }
+        .swiper-pagination-bullet-active {
+          opacity: 1 !important;
+          background: #fff !important;
+          .progress {
+            position: absolute;
+            background-color: $blue;
+            border-radius: 5px;
+            height: 3px;
+            top: 0;
+            left: 0;
+           &.animate {
+            animation-name: progress;
+            animation-duration: 5.5s;
+            animation-timing-function: linear;
+            animation-iteration-count: 1;
+           }
           }
         }
+
+        .step-box {
+          text-align: start;
+          flex: 1;
+          display: flex;
+          background-color: rgb(240, 243, 250);
+          // border-top-left-radius: 5px;
+          // border-top-right-radius: 5px;
+          gap: 10px;
+          flex-direction: column;
+          justify-content: center;
+          height: 70px;
+          padding: 0 20px;
+          opacity: 0.5;
+          h4 {
+            font-size: 20px;
+          }
+          .time-bar {
+            position: relative;
+            height: 3px;
+            border-radius: 5px;
+            width: 100%;
+            background-color: rgb(0, 0, 0, 0.1);
+          }
+        }
+
+        @keyframes progress {
+          from {
+            width: 0%;
+          }
+          to {
+            width: calc(100%);
+          }
+        }
+
         .content-box {
           background-color: #fff;
-          height: 300px;
+          height: 350px;
+          padding: 100px 50px 20px;
           display: flex;
           overflow: hidden;
 
           .text-wrapper {
             text-align: start;
             flex: 1;
-            padding: 20px 0 20px 60px;
             h4 {
-              font-size: 22px;
+              font-size: 23px;
+              line-height: 0;
               font-weight: 800;
+              min-width: 400px;
               color: $purple;
             }
           }
           .image {
             flex: 1;
+
+            img {
+              width: 400px;
+              transform: translate(-10%, -15%);
+            }
           }
         }
       }
@@ -619,198 +667,4 @@
   .swiper-pagination .swiper-pagination-bullet-active {
     background: var(--primary);
   }
-}
-
-.mySwiper {
-  .swiper-pagination-fraction, .swiper-pagination-custom, .swiper-horizontal > .swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal {
-
-    left: 0;
-    top: 30px;
-    height: 10px;
-    width: 100%;
-}
-.swiper-pagination.swiper-pagination-bullets.swiper-pagination-horizontal {
-  display: flex;
-  justify-content: space-between;
-  
-}
-.swiper-pagination-bullet {
-  width: 20px;
-  height: var(--swiper-pagination-bullet-height, var(--swiper-pagination-bullet-size, 8px));
-  display: inline-block;
-border-radius: var(--swiper-pagination-bullet-border-radius, 50%);
-background: var(--swiper-pagination-bullet-inactive-color, #000);
-opacity: var(--swiper-pagination-bullet-inactive-opacity, 0.2);
-}
-.swiper-pagination-bullet-active {
-  opacity: 1;
-}
-
-// .swiper-pagination-bullet {
-//   flex: 1;
-//     display: flex;
-//     background-color: #fff;
-//     border-top-left-radius: 5px;
-//     border-top-right-radius: 5px;
-//     gap: 10px;
-//     flex-direction: column;
-//     justify-content: center;
-//     height: 70px;
-//     padding: 0 20px;
-//     opacity: .5;
-// }
-  
-  height: 550px;
-  width: 800px;
-  .swiper-slide-active {
-    .step-box {
-      opacity: 1;
-    }
-  }
-  .box-wrapper {
-    display: flex;
-    justify-content: space-between;
-  }
-  .step-box {
-    flex: 1;
-    display: flex;
-    background-color: #fff;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    gap: 10px;
-    flex-direction: column;
-    justify-content: center;
-    height: 70px;
-    padding: 0 20px;
-    opacity: .5;
-    &.active {
-      opacity: 1;
-    }
-    h4 {
-      font-size: 20px;
-    }
-    .time-bar {
-      position: relative;
-      height: 3px;
-      border-radius: 5px;
-      width: 100%;
-      background-color: rgb(0, 0, 0, 0.1);
-      .progress {
-        position: absolute;
-        background-color: $blue;
-        border-radius: 5px;
-        height: 3px;
-        top: 0;
-        left: 0;
-        animation-name: progress;
-        animation-duration: 5.5s;
-        animation-timing-function: linear;
-        animation-iteration-count: 1;
-      }
-    }
-  }
-  @keyframes progress {
-    from {
-      width: 0%;
-    }
-    to {
-      width: calc(100%);
-    }
-  }
-  .content-box {
-    background-color: #fff;
-    height: 300px;
-    display: flex;
-    overflow: hidden;
-
-    .text-wrapper {
-      text-align: start;
-      flex: 1;
-      padding: 20px 0 20px 60px;
-      h4 {
-        font-size: 22px;
-        font-weight: 800;
-        color: $purple;
-      }
-    }
-    .image {
-      flex: 1;
-      img {
-        transform: scale(0.5);
-      }
-    }
-  }
-
-  .graphics {
-    width: 80%;
-    // background-color: #8290aa;
-    border-radius: 5px;
-    padding: 40px 0;
-    .box-wrapper {
-      display: flex;
-      gap: 10px;
-      justify-content: space-around;
-      text-align: start;
-
-      .step-box {
-        display: flex;
-        background-color: #fff;
-        // width: 100%;
-        border-top-left-radius: 5px;
-        border-top-right-radius: 5px;
-        gap: 10px;
-        flex-direction: column;
-        justify-content: center;
-        height: 70px;
-        padding: 0 20px;
-        // opacity: .5;
-        h4 {
-          font-size: 20px;
-        }
-        .time-bar {
-          height: 3px;
-          border-radius: 5px;
-          width: 100%;
-          background-color: rgb(0, 0, 0, 0.1);
-          .progress {
-            position: absolute;
-            background-color: $blue;
-            border-radius: 5px;
-            height: 30px;
-            top: 0;
-            left: 0;
-            width: 50px;
-          }
-        }
-      }
-    }
-    .content-box {
-      background-color: #fff;
-      height: 300px;
-      display: flex;
-      overflow: hidden;
-
-      .text-wrapper {
-        text-align: start;
-        flex: 1;
-        padding: 20px 0 20px 60px;
-        h4 {
-          font-size: 22px;
-          font-weight: 800;
-          color: $purple;
-        }
-      }
-      .image {
-        flex: 1;
-        img {
-          transform: scale(0.5);
-        }
-      }
-    }
-  }
-}
-
-.autoplay-wrap {
-  background-color: #ccc;
-  padding: 20px;
 }
