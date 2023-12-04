@@ -354,6 +354,7 @@
       h2 {
         max-width: 700px;
       }
+
       .mySwiper {
         margin-top: 60px;
         height: 550px;
@@ -397,10 +398,14 @@
             top: 0;
             left: 0;
             animation-name: progress;
-            // animation-play-state: paused;
+            animation-play-state: running;
             animation-duration: 5.5s;
             animation-timing-function: linear;
             animation-iteration-count: 1;
+
+            &.paused {
+              animation-play-state: paused;
+            }
           }
         }
 
@@ -604,51 +609,49 @@
       width: 100px;
       height: 200px;
       perspective: 1000px;
- 
 
-  .card {
-      position: absolute;
-      width: 100px;
-      height: 200px;
-      transform-style: preserve-3d;
-      animation: falling-rotate 7s linear;
-      animation-iteration-count: infinite;
-      animation-fill-mode: forwards; 
-  }
-
-
-  .front,
-  .back {
-      position: absolute;
-      width: 100px;
-      height: 200px;
-      backface-visibility: hidden;
-  }
-
-  .front {
-      background-color: #f8f8f8;
-      color: black;
-      img {
+      .card {
+        position: absolute;
         width: 100px;
-      height: 200px;
+        height: 200px;
+        transform-style: preserve-3d;
+        animation: falling-rotate 7s linear;
+        animation-iteration-count: infinite;
+        animation-fill-mode: forwards;
       }
-  }
 
-  .back {
-      background-color: $backside;
-      transform: rotateY(180deg);
-  }
+      .front,
+      .back {
+        position: absolute;
+        width: 100px;
+        height: 200px;
+        backface-visibility: hidden;
+      }
 
-  @keyframes falling-rotate {
-    0% {
-      transform: translate(500px, -1000px) rotateY(0deg);
-    }
-    100% {
-      transform: translate(500px, -400px) rotateY(360deg);
+      .front {
+        background-color: #f8f8f8;
+        color: black;
+        img {
+          width: 100px;
+          height: 200px;
+        }
+      }
+
+      .back {
+        background-color: $backside;
+        transform: rotateY(180deg);
+      }
+
+      @keyframes falling-rotate {
+        0% {
+          transform: translate(500px, -1000px) rotateY(0deg);
+        }
+        100% {
+          transform: translate(500px, -400px) rotateY(360deg);
+        }
+      }
     }
   }
-}
-}
 }
 
 :root {

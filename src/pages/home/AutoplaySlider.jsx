@@ -2,6 +2,9 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
 import createdIMG from "../../assets/images/create.png";
 import downloadIMG from "../../assets/images/downloadIMG.png";
+import { useEffect, useRef, useState } from "react";
+// import { useInView } from "react-intersection-observer";
+
 const instructions = [
   {
     id: "1",
@@ -29,7 +32,34 @@ const instructions = [
   },
 ];
 const AutoplaySlider = () => {
+  const progressBarRef = useRef(null);
+  const autoplayRef = useRef(null);
+  const autoplayWrapperRef = useRef(null);
+  const [isElementVisible, setElementVisible] = useState();
+
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      const entry = entries[0];
+      setElementVisible(entry.isIntersecting);
+    }, {
+      // threshold: .7,
+    });
+    observer.observe(autoplayWrapperRef.current);
+  }, []);
+
+  useEffect(() => {
+      if (isElementVisible) {
+        autoplayRef.current.autoplay.start();
+        // progressBarRef.current.style.animationPlayState = 'running';
+      } else {
+        autoplayRef.current.autoplay.stop();
+        // progressBarRef.current.style.animationPlayState = 'paused';
+      }
+
+  }, [isElementVisible]);
+
   return (
+    <div ref={autoplayWrapperRef} className="autoplay-wrapper">
     <Swiper
       loop={true}
       slidesPerView={1}
@@ -41,11 +71,11 @@ const AutoplaySlider = () => {
         el: ".swiper-pagination",
         clickable: true,
         renderBullet: function (index, className) {
-            return `
+          return `
             <div class="step-box ${className}">
               <h4>${index + 1}. ${instructions[index].tabName}</h4>
               <span class="time-bar">
-              <span class="progress"></span>
+              <span ref={progressBarRef} class="progress"></span>
               </span>
             </div>
           `;
@@ -53,6 +83,10 @@ const AutoplaySlider = () => {
       }}
       modules={[Autoplay, Pagination]}
       className="mySwiper"
+      onSwiper={(swiperInstance) => {
+        if (!swiperInstance) return;
+        autoplayRef.current = swiperInstance;
+      }}
     >
       <div className="graphics">
         {instructions.map((instruction, index) => (
@@ -70,8 +104,11 @@ const AutoplaySlider = () => {
         ))}
       </div>
       <div className="swiper-pagination"></div>
-      <div className="time"><div className="progress"></div></div>
+      <div className="time">
+        <div ref={progressBarRef} className={`${isElementVisible ? '' : 'paused'} progress`}></div>
+      </div>
     </Swiper>
+    </div>
   );
 };
 

@@ -92,7 +92,6 @@ const Carousel = () => {
         className="swiper_container"
       >
        {templates.map((template, index) => (
-        <>
             
         <SwiperSlide key={index}>
         <h3 className="location">{template.location}</h3>
@@ -101,7 +100,6 @@ const Carousel = () => {
               </p>
             <img src={template.url} alt="" />
         </SwiperSlide>
-</>
        ))}
 
         <div className="slider-controller">
