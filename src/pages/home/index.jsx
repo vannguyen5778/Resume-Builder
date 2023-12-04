@@ -1,8 +1,8 @@
+import logo5 from "../../assets/images/logo20.svg";
 import logo1 from "../../assets/images/logo1.svg";
-import logo2 from "../../assets/images/logo20.svg";
 import logo3 from "../../assets/images/logo21.svg";
 import logo4 from "../../assets/images/logo11.svg";
-import logo5 from "../../assets/images/logo6.png";
+import logo2 from "../../assets/images/logo6.png";
 import Logo from "../../assets/images/hired-logo.svg";
 
 import "swiper/scss";
@@ -15,6 +15,7 @@ import "swiper/scss/autoplay";
 import ReviewSlider from "./ReviewSlider";
 import Carousel from "./TemplateCarousel";
 import AutoplaySlider from "./AutoplaySlider";
+import CardAnimation from "./Animations";
 
 const Home = () => {
   return (
@@ -38,12 +39,14 @@ const Home = () => {
           />
         </div>
 
-        <div className="logos">
-          <img src={logo5} alt="" />
-          <img src={logo1} alt="" />
-          <img src={logo4} alt="" />
-          <img src={logo2} alt="" />
-          <img src={logo3} alt="" />
+        <div className="logos-wrapper">
+          <div className="logos">
+            <img src={logo1} alt="" />
+            <img src={logo2} alt="" />
+            <img src={logo3} alt="" />
+            <img src={logo4} alt="" />
+            <img src={logo5} alt="" />
+          </div>
         </div>
 
         <div className="reviews section">
@@ -240,10 +243,16 @@ const Home = () => {
             <p className="sm-text copyright">Copyright 2023 • HIRED</p>
           </div>
         </div>
-      </div>
-      <div className="autoplay-wrap">
-        <AutoplaySlider />
-      </div>
+
+     
+       
+    </div> 
+    < CardAnimation />
+
+
+    
+      
+      
     </>
   );
 };

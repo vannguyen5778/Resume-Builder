@@ -13,16 +13,19 @@ function App() {
 
 export default App;
 
-// cool animations
+
+// cool animations: Framer motion, GPSD
 // redux
 // context api
 // scss modules
-// drag and drop
+// drag and drop - hello-pangea/dnd
 // authentication
-// validation
+// validation: react form hooks
 // data from backend
 // react router
-// motion div
+// CSS in JS
+
+
 
 // pagination
 // fetch data
@@ -40,3 +43,6 @@ export default App;
 // download feature
 // drag and drop
 // reform styling
+
+
+
