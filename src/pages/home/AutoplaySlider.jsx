@@ -3,8 +3,15 @@ import { Autoplay, Pagination } from "swiper/modules";
 import createdIMG from "../../assets/images/create.png";
 import downloadIMG from "../../assets/images/downloadIMG.png";
 import { useEffect, useRef, useState } from "react";
-// import { useInView } from "react-intersection-observer";
+import { useInView } from "react-intersection-observer";
+import { motion, useAnimation } from "framer-motion";
 
+const progressBarAnimation = {
+  hidden: {
+    width: 0,
+  },
+  visible: {},
+};
 const instructions = [
   {
     id: "1",
@@ -38,40 +45,45 @@ const AutoplaySlider = () => {
   const [isElementVisible, setElementVisible] = useState();
 
   useEffect(() => {
-    const observer = new IntersectionObserver((entries) => {
-      const entry = entries[0];
-      setElementVisible(entry.isIntersecting);
-    }, {
-      // threshold: .7,
-    });
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const entry = entries[0];
+        setElementVisible(entry.isIntersecting);
+      },
+      {
+        // threshold: .7,
+      }
+    );
     observer.observe(autoplayWrapperRef.current);
   }, []);
 
   useEffect(() => {
-      if (isElementVisible) {
-        autoplayRef.current.autoplay.start();
-        // progressBarRef.current.style.animationPlayState = 'running';
-      } else {
-        autoplayRef.current.autoplay.stop();
-        // progressBarRef.current.style.animationPlayState = 'paused';
-      }
+    if (isElementVisible) {
+      autoplayRef.current.autoplay.start();
+      progressBarRef.current.style.animationPlayState = 'running';
 
+    } else {
+      autoplayRef.current.autoplay.stop();
+      progressBarRef.current.style.animationPlayState = 'paused';
+    }
   }, [isElementVisible]);
+
+
 
   return (
     <div ref={autoplayWrapperRef} className="autoplay-wrapper">
-    <Swiper
-      loop={true}
-      slidesPerView={1}
-      autoplay={{
-        delay: 5000,
-        disableOnInteraction: false,
-      }}
-      pagination={{
-        el: ".swiper-pagination",
-        clickable: true,
-        renderBullet: function (index, className) {
-          return `
+      <Swiper
+        loop={true}
+        slidesPerView={1}
+        autoplay={{
+          delay: 5000,
+          disableOnInteraction: false,
+        }}
+        pagination={{
+          el: ".swiper-pagination",
+          clickable: true,
+          renderBullet: function (index, className) {
+            return `
             <div class="step-box ${className}">
               <h4>${index + 1}. ${instructions[index].tabName}</h4>
               <span class="time-bar">
@@ -79,35 +91,35 @@ const AutoplaySlider = () => {
               </span>
             </div>
           `;
-        },
-      }}
-      modules={[Autoplay, Pagination]}
-      className="mySwiper"
-      onSwiper={(swiperInstance) => {
-        if (!swiperInstance) return;
-        autoplayRef.current = swiperInstance;
-      }}
-    >
-      <div className="graphics">
-        {instructions.map((instruction, index) => (
-          <SwiperSlide key={index}>
-            <div className="content-box">
-              <div className="text-wrapper">
-                <h4>{instruction.boxTitle}</h4>
-                <p className="description">{instruction.boxContent}</p>
+          },
+        }}
+        modules={[Autoplay, Pagination]}
+        className="mySwiper"
+        onSwiper={(swiperInstance) => {
+          if (!swiperInstance) return;
+          autoplayRef.current = swiperInstance;
+        }}
+      >
+        <div className="graphics">
+          {instructions.map((instruction, index) => (
+            <SwiperSlide key={index}>
+              <div className="content-box">
+                <div className="text-wrapper">
+                  <h4>{instruction.boxTitle}</h4>
+                  <p className="description">{instruction.boxContent}</p>
+                </div>
+                <div className="image">
+                  <img src={instruction.url} alt="" />
+                </div>
               </div>
-              <div className="image">
-                <img src={instruction.url} alt="" />
-              </div>
-            </div>
-          </SwiperSlide>
-        ))}
-      </div>
-      <div className="swiper-pagination"></div>
-      <div className="time">
-        <div ref={progressBarRef} className={`${isElementVisible ? '' : 'paused'} progress`}></div>
-      </div>
-    </Swiper>
+            </SwiperSlide>
+          ))}
+        </div>
+        <div className="swiper-pagination"></div>
+        <div className="time-bar">
+          <div ref={progressBarRef} className={`progress`}></div>
+        </div>
+      </Swiper>
     </div>
   );
 };

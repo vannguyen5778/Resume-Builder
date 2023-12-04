@@ -269,13 +269,14 @@
     }
 
     .callToAction {
+      z-index: 6;
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 120px 180px;
       height: 100vh;
       gap: 60px;
-      background-color: #f8f5f5;
+      background-color: $light-bg;
       .content-wrapper {
         display: flex;
         flex-direction: column;
@@ -439,7 +440,7 @@
             width: 0%;
           }
           to {
-            width: calc(100%);
+            width: 100%;
           }
         }
 
@@ -605,11 +606,22 @@
     }
 
     .card-container {
+      z-index: 4;
       position: relative;
       width: 100px;
       height: 200px;
       perspective: 1000px;
-
+      :nth-child(1) {
+        animation-delay: 1s;
+      }
+      :nth-child(2) {
+        animation-delay: 19s;
+      }
+      :nth-child(3) {
+        animation-delay: 10s;
+      }
+     
+   
       .card {
         position: absolute;
         width: 100px;
@@ -719,37 +731,35 @@
     align-items: center;
     margin: 0 auto;
     justify-content: space-between;
-  }
 
-  .slider-controller .slider-arrow {
-    background: $blue;
-    width: 3rem;
-    height: 3rem;
-    border-radius: 50%;
+    .slider-arrow {
+      background: $blue;
+      width: 3rem;
+      height: 3rem;
+      border-radius: 50%;
+      filter: drop-shadow(0px 8px 24px rgba(18, 28, 53, 0.1));
+      i {
+        font-size: 1rem;
+        color: $white;
+      }
 
-    filter: drop-shadow(0px 8px 24px rgba(18, 28, 53, 0.1));
-  }
-
-  .slider-controller .slider-arrow i {
-    font-size: 1rem;
-    color: $white;
-  }
-
-  .slider-controller .slider-arrow::after {
-    content: "";
+      &::after {
+        content: "";
+      }
+    }
   }
 
   .swiper-pagination {
     position: relative;
     width: 15rem !important;
     bottom: 1rem;
-  }
 
-  .swiper-pagination .swiper-pagination-bullet {
-    filter: drop-shadow(0px 8px 24px rgba(18, 28, 53, 0.1));
-  }
+    .swiper-pagination-bullet {
+      filter: drop-shadow(0px 8px 24px rgba(18, 28, 53, 0.1));
+    }
 
-  .swiper-pagination .swiper-pagination-bullet-active {
-    background: var(--primary);
+    .swiper-pagination-bullet-active {
+      background: var(--primary);
+    }
   }
 }

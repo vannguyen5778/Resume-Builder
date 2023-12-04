@@ -244,10 +244,16 @@ const Home = () => {
           </div>
         </div>
 
+        <div className="card-container">  
+<CardAnimation />         
+       
+        
+        </div>
+
      
        
     </div> 
-    < CardAnimation />
+    {/* < CardAnimation /> */}
 
 
     
