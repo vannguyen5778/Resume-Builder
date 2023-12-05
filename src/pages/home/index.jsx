@@ -16,12 +16,19 @@ import ReviewSlider from "./ReviewSlider";
 import Carousel from "./TemplateCarousel";
 import AutoplaySlider from "./AutoplaySlider";
 import CardAnimation from "./Animations";
+import { motion, useScroll } from "framer-motion";
 
 const Home = () => {
+  const { scrollY } = useScroll();
+  const slidingImg = {
+    hidden: { y: "320px", opacity: 0 },
+
+    show: { y: 0, opacity: 1 },
+  };
   return (
     <>
       <div className="home">
-        <div className="intro section">
+        <section className="intro section">
           <p className="title">ONLINE RESUME BUILDER</p>
           <h2>
             Only 2% of resumes make it past the first round. Be in the top 2%
@@ -33,13 +40,18 @@ const Home = () => {
           </p>
           <button className="button">Create My Resume</button>
           <h4>31,749 resumes created today</h4>
-          <img
+          <motion.img
             src="https://s3.resume.io/cdn-cgi/image/width=770,height=350,dpr=1.5,fit=crop,gravity=top,quality=75,format=auto/uploads/local_template_image/image/488/persistent-resource/dublin-resume-templates.jpg"
             alt="resume img"
+            className="sliding-img"
+            variants={slidingImg}
+            initial="hidden"
+            animate="show"
+            transition={{ duration: 2, ease: [0.25, 0.1, 0.2, 1]}}
           />
-        </div>
+        </section>
 
-        <div className="logos-wrapper">
+        <section className="logos-wrapper">
           <div className="logos">
             <img src={logo1} alt="" />
             <img src={logo2} alt="" />
@@ -47,9 +59,9 @@ const Home = () => {
             <img src={logo4} alt="" />
             <img src={logo5} alt="" />
           </div>
-        </div>
+        </section>
 
-        <div className="reviews section">
+        <section id="about-us" className="reviews section">
           <h2>Reviewed by the community. Trusted by professionals</h2>
           <div className="review-wrap">
             <div className="overall">
@@ -87,9 +99,9 @@ const Home = () => {
               <ReviewSlider />
             </div>
           </div>
-        </div>
+        </section>
 
-        <div className="instructions section">
+        <section id="getting-started" className="instructions section">
           <img
             src="https://resume.io/assets/landing/home/how/icon-580ea8bcc1e527c9acb382f70dbe3b5f81dc9a03428cfcf7ee715fd4266afc0c.svg"
             alt=""
@@ -104,9 +116,9 @@ const Home = () => {
           <div className="autoplay-wrap">
             <AutoplaySlider />
           </div>
-        </div>
+        </section>
 
-        <div className="templates">
+        <section id="templates" className="templates">
           <div className="template-wrapper section">
             <img
               src="https://resume.io/assets/landing/home/templates/icon-078b625c05982debafe1358b056b0c40312d1c2ed4d17e21f03e83163353e45a.svg"
@@ -120,8 +132,9 @@ const Home = () => {
             </p>
             <Carousel />
           </div>
-        </div>
-        <div className="callToAction ">
+        </section>
+
+        <section id="reviews" className="callToAction ">
           <div className="content-wrapper ">
             <h2>
               User-friendly. Professional. Effective. Try our CV builder today!
@@ -139,9 +152,9 @@ const Home = () => {
             src="https://resume.io/assets/landing/home/letter-maker/visual-13cdbab63916313dab4caff704097bae2aafc990be5e86f9cc50260bffe6bc75.svg"
             alt=""
           />
-        </div>
+        </section>
 
-        <div className="join section">
+        <section className="join section">
           <h1>
             Join over <mark>32,268,000 </mark>
             users worldwide
@@ -150,9 +163,9 @@ const Home = () => {
             Start for free — try our resume builder now
           </p>
           <button className="button">Create My Resume</button>
-        </div>
+        </section>
 
-        <div className="footer">
+        <footer id="contact" className="footer">
           <div className="top">
             <div className="social-media">
               <p>Connect with us on social media</p>
@@ -242,21 +255,12 @@ const Home = () => {
             />
             <p className="sm-text copyright">Copyright 2023 • HIRED</p>
           </div>
+        </footer>
+
+        <div className="card-container">
+          <CardAnimation />
         </div>
-
-        <div className="card-container">  
-<CardAnimation />                 
-        </div>
-
-     
-       
-    </div> 
-    {/* < CardAnimation /> */}
-
-
-    
-      
-      
+      </div>
     </>
   );
 };

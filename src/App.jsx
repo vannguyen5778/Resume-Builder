@@ -2,17 +2,24 @@ import Navbar from "./components/Navbar";
 import "./assets/styles/App.scss";
 import Home from "./pages/Home";
 
+import { Routes, Route } from "react-router-dom";
+import Resumes from "./pages/resumes";
+
 function App() {
   return (
     <div className="app">
       <Navbar />
-      <Home />
+      <Routes>
+        <Route path="/" element={<Home />}>
+        </Route>
+        <Route path="/resumes" element={<Resumes />}>
+        </Route>
+      </Routes>
     </div>
   );
 }
 
 export default App;
-
 
 // cool animations: Framer motion, GPSD
 // redux
@@ -24,8 +31,6 @@ export default App;
 // data from backend
 // react router
 // CSS in JS
-
-
 
 // pagination
 // fetch data
@@ -43,6 +48,3 @@ export default App;
 // download feature
 // drag and drop
 // reform styling
-
-
-

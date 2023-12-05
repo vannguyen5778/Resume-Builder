@@ -1,11 +1,8 @@
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import logo from "../assets/images/logo.png";
-import {
-  motion,
-  useMotionValueEvent,
-  useScroll,
-  
-} from "framer-motion";
+import { motion, useMotionValueEvent, useScroll } from "framer-motion";
+import { Link } from "react-router-dom";
+import { HashLink } from 'react-router-hash-link';
 
 const Navbar = () => {
   const [hidden, setHidden] = useState(false);
@@ -17,22 +14,22 @@ const Navbar = () => {
     } else {
       setHidden(false);
     }
-  })
+  });
 
   return (
     <motion.nav
       className={` background logo`}
       variants={{ visible: { y: 0 }, hidden: { y: "-100%" } }}
       animate={hidden ? "hidden" : "visible"}
-      transition={{ duration: .35, ease:"easeInOut"}}
+      transition={{ duration: 0.35, ease: "easeInOut" }}
     >
-      <img className="logo" src={logo} alt="" />
+     <Link to="/"> <img className="logo" src={logo} alt="" /></Link>
       <ul>
-        <li>resume</li>
-        <li>cover letter</li>
-        <li>resume writing</li>
-        <li>blog</li>
-        <li>FAQ</li>
+        <HashLink to="#about-us"><li>About us</li></HashLink>
+        <HashLink to="#getting-started"><li>getting started</li></HashLink>
+        <HashLink to="#templates"><li>Templates</li></HashLink>
+        <HashLink to="#reviews"><li>Resumes</li></HashLink>
+        <HashLink to="#contact"><li>Contact</li></HashLink>
       </ul>
       <div className="registration">
         <button className="login">Log In</button>
