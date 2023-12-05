@@ -1,0 +1,13 @@
+.root {
+    position: absolute;
+    opacity: 0.4;
+    left: 10px;
+    top: 23px;
+    width: 10px;
+    font-size: 30px;
+    max-height: 5px;
+    line-height: 7px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+  }
