@@ -245,9 +245,7 @@ const Home = () => {
         </div>
 
         <div className="card-container">  
-<CardAnimation />         
-       
-        
+<CardAnimation />                 
         </div>
 
      

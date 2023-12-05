@@ -7,26 +7,26 @@ const CardAnimation = () => {
     height: 200px;
     transform-style: preserve-3d;
     animation-delay: ${(Math.floor(Math.random() * 10) + 1) * 1000}ms;
-    animation: ${({ initialX }) => fallingAnimation(initialX)} 7s linear
+    animation: ${({ initialX }) => fallingAnimation(initialX)} 10s linear
       infinite forwards;
   `;
 
   const fallingAnimation = (initialX) => keyframes`
     0% {
       transform: translate(${
-        initialX * 300 + initialX * 350
+        initialX * 450 + 50
       }px, -1800px) rotateY(0deg);
     }        
     100% {
       transform: translate(${
-        initialX * 300 + initialX * 350
-      }px, -1000px) rotateY(360deg);
+        initialX * 450  + 50
+      }px, -1100px) rotateY(360deg);
     }
   `;
 
   return (
     <>
-      {[...Array(3)].map((_, index) => (
+      {[...Array(4)].map((_, index) => (
         <Card initialX={index} index={index} key={index}>
           <div className="front">
             <img
