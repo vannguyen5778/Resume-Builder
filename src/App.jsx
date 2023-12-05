@@ -4,16 +4,16 @@ import Home from "./pages/Home";
 
 import { Routes, Route } from "react-router-dom";
 import Resumes from "./pages/resumes";
+import Resume from "./pages/resume";
 
 function App() {
   return (
     <div className="app">
       <Navbar />
       <Routes>
-        <Route path="/" element={<Home />}>
-        </Route>
-        <Route path="/resumes" element={<Resumes />}>
-        </Route>
+        <Route exact path="/" element={<Home />} />
+        <Route path="/resumes" element={<Resumes />} />
+        <Route path="/resume" element={<Resume />} />
       </Routes>
     </div>
   );

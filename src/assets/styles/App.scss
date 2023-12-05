@@ -107,8 +107,6 @@
         border-top-left-radius: 10px;
         width: 750px;
       }
-      
-   
     }
     .logos-wrapper {
       background-color: $white;
@@ -325,28 +323,28 @@
           --white: #ffffff;
           --bg: #f5f5f5;
         }
-        
+
         .carousel-wrap {
           .container {
             max-width: 124rem;
             margin: 0 auto;
           }
-        
+
           .heading {
             padding: 1rem 0;
             font-size: 3.5rem;
             text-align: center;
           }
-        
+
           .swiper_container {
             height: 52rem;
             padding: 2rem 0;
           }
-        
+
           .swiper-wrapper {
             transform: translate3d(-2838px, 0px, 0px);
           }
-        
+
           .swiper-slide {
             width: 37rem;
             height: 42rem;
@@ -361,7 +359,7 @@
               visibility: hidden;
             }
           }
-        
+
           .swiper-slide img {
             width: 35rem;
             position: relative;
@@ -370,12 +368,12 @@
               rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
               rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset; // object-fit: cover;
           }
-        
+
           .swiper-slide-shadow-left,
           .swiper-slide-shadow-right {
             display: none;
           }
-        
+
           .slider-controller {
             position: absolute;
             bottom: 65%;
@@ -385,7 +383,7 @@
             align-items: center;
             margin: 0 auto;
             justify-content: space-between;
-        
+
             .slider-arrow {
               background: $blue;
               width: 3rem;
@@ -396,22 +394,22 @@
                 font-size: 1rem;
                 color: $white;
               }
-        
+
               &::after {
                 content: "";
               }
             }
           }
-        
+
           .swiper-pagination {
             position: relative;
             width: 15rem !important;
             bottom: 1rem;
-        
+
             .swiper-pagination-bullet {
               filter: drop-shadow(0px 8px 24px rgba(18, 28, 53, 0.1));
             }
-        
+
             .swiper-pagination-bullet-active {
               background: var(--primary);
             }
@@ -696,11 +694,9 @@
       :nth-child(2) {
         animation-delay: 7s;
       }
-      :last-child{
+      :last-child {
         animation-delay: 9s;
       }
-
-      
 
       .front,
       .back {
@@ -723,10 +719,93 @@
         background-color: $backside;
         transform: rotateY(180deg);
       }
-
-
     }
   }
+
+  .resumes {
+    color: black;
+    padding: 100px 20px;
+    margin: 0 auto;
+    width: 75%;
+    header {
+      display: flex;
+      justify-content: space-between;
+      padding: 20px 0;
+      border-bottom: 1px solid $light-bg;
+      align-items: baseline;
+      h2 {
+        font-weight: 700;
+      }
+      button {
+        @include button;
+        padding: 10px 15px;
+        font-size: 16px;
+        font-weight: 600;
+        .plus-icon {
+          padding-right: 10px;
+        }
+      }
+    }
+    main {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      justify-content: space-between;
+      .resume-wrapper {
+        display: flex;
+        width: 600px;
+        gap: 25px;
+        padding: 50px 0;
+        .preview-img {
+          width: 150px;
+          height: 200px;
+          border-radius: 3px;
+          border: 1px solid $light-bg;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          cursor: pointer;
+
+          .preview-i {
+            font-size: 36px;
+            opacity: 0.2;
+            transition: all 0.2s ease-in;
+            &:hover {
+              transform: scale(1.1);
+            }
+          }
+        }
+        .text-block {
+          display: flex;
+          max-width: 200px;
+          flex-direction: column;
+          justify-content: space-between;
+
+          .top {
+            h3 {
+              font-weight: 600;
+              cursor: pointer;
+              text-transform: capitalize;
+            }
+            &.new {
+              opacity: 0.6;
+            }
+          }
+          .functionalities {
+            li {
+              padding-bottom: 10px;
+
+              .func-i {
+                color: $blue;
+                padding-right: 5px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .resume {
+    padding-top: 100px;
+  }
 }
-
-

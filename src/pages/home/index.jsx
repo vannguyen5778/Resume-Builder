@@ -16,10 +16,9 @@ import ReviewSlider from "./ReviewSlider";
 import Carousel from "./TemplateCarousel";
 import AutoplaySlider from "./AutoplaySlider";
 import CardAnimation from "./Animations";
-import { motion, useScroll } from "framer-motion";
+import { motion } from "framer-motion";
 
 const Home = () => {
-  const { scrollY } = useScroll();
   const slidingImg = {
     hidden: { y: "320px", opacity: 0 },
 
