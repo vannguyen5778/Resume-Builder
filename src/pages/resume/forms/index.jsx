@@ -15,6 +15,14 @@ const static_items = [
         id: 11,
         content: "Hardvard University",
       },
+      {
+        id: 102,
+        content: "Standford University",
+      },
+      {
+        id: 112,
+        content: "Hardvard University",
+      },
     ],
   },
   {
