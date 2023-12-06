@@ -825,6 +825,17 @@
         border-radius: 4px;
         padding: 30px;
         width: 450px;
+        .drag-dots {
+          img {
+            width: 20px;
+            height: 20px;
+          }
+          filter: invert(28%) sepia(32%) saturate(1452%) hue-rotate(228deg)
+            brightness(100%) contrast(96%);
+          position: absolute;
+          left: 10px;
+          top: 31px;
+        }
 
         h3 {
           color: #363b7a;
@@ -838,19 +849,22 @@
 
           .item {
             display: flex;
+            width: 100%;
             justify-content: space-between;
             align-items: center;
-
+            user-select: none;
             padding: 20px 15px;
             border-radius: 4px;
             background-color: #f3f4ff;
             .item-name {
               color: #363b7a;
               font-weight: 800;
+              user-select: none;
             }
             .chevron {
               font-size: 14px;
               color: rgba(37, 41, 94, 0.5);
+              user-select: none;
             }
           }
         }

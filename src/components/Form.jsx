@@ -1,18 +1,43 @@
 import { Draggable } from "@hello-pangea/dnd";
-import GripDots from "./GripDots";
 import PropTypes from "prop-types";
+import FormItems from "./FormItems";
 
-const Form = ({ title, children,  index }) => {
+const Form = ({
+  key,
+  draggableId,
+  index,
+  formTitle,
+  subItems,
+  subItemsType,
+}) => {
   return (
-    <Draggable draggableId={title} index={index}>
-        {(provided, snapshot) => (
-    <div className="form" ref={provided.innerRef} {...provided.draggableProps}>
-      <GripDots isDragging={snapshot.isDragging} />
-      <h3 className="title"  {...provided.dragHandleProps}>{title}</h3>
-      <div className="items">{children}</div>
-    </div>
+    <Draggable key={key} draggableId={draggableId} index={index}>
+      {(provided, snapshot) => (
+        <div>
+          <div
+            className="form"
+            ref={provided.innerRef}
+            {...provided.draggableProps}
+            style={{
+              boxShadow: snapshot.isDragging ? "rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset" : "none",
+              ...provided.draggableProps.style,
+            }}
+          >
+        
+            <span className="drag-dots">
+              <img
+                {...provided.dragHandleProps}
+                src="https://www.iconbolt.com/iconsets/radix-icons/drag-handle-dots-2.svg"
+                alt=""
+              />
+            </span>
 
-        )}
+            <h3 className="title">{formTitle}</h3>
+            <FormItems subItems={subItems} type={subItemsType} />
+          </div>
+          {provided.placeholder}
+        </div>
+      )}
     </Draggable>
   );
 };
@@ -20,7 +45,10 @@ const Form = ({ title, children,  index }) => {
 export default Form;
 
 Form.propTypes = {
-  title: PropTypes.string.isRequired,
-  children: PropTypes.node.isRequired,
-  index: PropTypes.number.isRequired,
+  key: PropTypes.number,
+  draggableId: PropTypes.string,
+  index: PropTypes.number,
+  formTitle: PropTypes.string,
+  subItems: PropTypes.array,
+  subItemsType: PropTypes.string,
 };
