@@ -48,3 +48,12 @@ export default App;
 // download feature
 // drag and drop
 // reform styling
+
+
+// 2 days left 
+// implement styling and everything for dnd
+// manage other states in context api 
+//  manage storage in redux toolkit
+// local storage redux persist
+// responsive home page !!!
+// login lgout validation react hook form

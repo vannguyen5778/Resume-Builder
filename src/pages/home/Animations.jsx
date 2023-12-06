@@ -14,12 +14,12 @@ const CardAnimation = () => {
   const fallingAnimation = (initialX) => keyframes`
     0% {
       transform: translate(${
-        initialX * 450 + 50
+        initialX * 400 + 50
       }px, -1800px) rotateY(0deg);
     }        
     100% {
       transform: translate(${
-        initialX * 450  + 50
+        initialX * 400  + 50
       }px, -1100px) rotateY(360deg);
     }
   `;

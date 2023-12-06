@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { DragDropContext, Draggable, Droppable } from "@hello-pangea/dnd";
 import ServiceCommandUnit from "./ServiceCommandUnit";
+import Form from "../../../components/Form";
+import FormItem from "../../../components/FormItem";
 
 const static_items = [
   {
@@ -93,6 +95,7 @@ const Forms = () => {
   };
 
   return (
+    <>
     <DragDropContext onDragEnd={onDragEnd}>
       <Droppable droppableId="droppable" type="droppableItem">
         {(provided, snapshot) => (
@@ -138,11 +141,23 @@ const Forms = () => {
         )}
       </Droppable>
     </DragDropContext>
+
+    {/* <div className="forms">
+      <div className="form-wrapper">
+        <Form title="Hello">
+          <div className="subItems">
+            <FormItem title="Standford University"/>
+          </div>
+        </Form>
+      </div>
+    </div> */}
+ 
+    </>
   );
 };
 
 export default Forms;
-
+// forms => form-wrapper => form+draggable dots=>formItems => formItem individual
 
 
 {
@@ -165,3 +180,5 @@ export default Forms;
       </Droppable>
     </DragDropContext> */
 }
+
+
