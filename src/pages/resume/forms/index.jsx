@@ -17,11 +17,11 @@ const static_items = [
       },
       {
         id: 102,
-        content: "Standford University",
+        content: "Fusion University",
       },
       {
         id: 112,
-        content: "Hardvard University",
+        content: "ttt University",
       },
     ],
   },

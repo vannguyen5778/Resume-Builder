@@ -6,16 +6,23 @@ import {
   faDownload,
   faCirclePlus,
 } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
+import { addResume } from "../../redux/resumeSlice";
+import { v4 as uuidv4 } from 'uuid';
 
 const Resumes = () => {
+
+
   return (
     <div className="resumes">
       <header>
         <h2>Resumes</h2>
-        <button>
-          <FontAwesomeIcon icon={faPlus} className="plus-icon" />
+        <Link to="/resume"  onClick={() => {console.log("hello"); dispatch(addResume({}))}}>
+        <button >
+          <FontAwesomeIcon  icon={faPlus} className="plus-icon" />
           Create New
         </button>
+        </Link>
       </header>
       <main>
         <div className="resume-wrapper">

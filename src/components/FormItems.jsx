@@ -1,22 +1,24 @@
-import { faChevronDown, faChevronUp, faTrashCan } from "@fortawesome/free-solid-svg-icons";
+import {
+  faChevronDown,
+  faChevronUp,
+  faTrashCan,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Droppable, Draggable } from "@hello-pangea/dnd";
 import PropTypes from "prop-types";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { deleteFormItem } from "../redux/resumeSlice";
 
 const FormItems = ({ subItems, type }) => {
   const [isExpanded, setIsExpanded] = useState(true);
+  const dispatch = useDispatch();
   // const [isFormOpen, setFormOpen] = useState(false);
 
   const handleChevron = (e) => {
     e.stopPropagation();
     setIsExpanded((prevIsExpanded) => !prevIsExpanded);
-    console.log("hello");
   };
-
-  // const handleDelete = (index) => {
-
-  // }
 
   return (
     <Droppable droppableId={type} type={`droppableSubItem-${type}`}>
@@ -33,7 +35,6 @@ const FormItems = ({ subItems, type }) => {
                   <div
                     ref={provided.innerRef}
                     {...provided.draggableProps}
-                    // {...provided.dragHandleProps}
                     className="item"
                     style={{
                       background: snapshot.isDragging ? "#b19cd9" : "#f3f4ff",
@@ -47,7 +48,11 @@ const FormItems = ({ subItems, type }) => {
                         alt=""
                       />
                     </span>
-              <FontAwesomeIcon className="trash-can" icon={faTrashCan} onClick={() => {handleDelete(index)}}/>
+                    <FontAwesomeIcon
+                      className="trash-can"
+                      icon={faTrashCan}
+                      onClick={() => dispatch(deleteFormItem([type, item.id]))}
+                    />
 
                     <span className="item-name">{item.content}</span>
                     <FontAwesomeIcon
