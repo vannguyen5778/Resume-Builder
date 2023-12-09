@@ -1,4 +1,3 @@
-import Navbar from "./components/Navbar";
 import "./assets/styles/App.scss";
 import Home from "./pages/Home";
 
@@ -9,7 +8,6 @@ import Resume from "./pages/resume";
 function App() {
   return (
     <div className="app">
-      <Navbar />
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route path="/resumes" element={<Resumes />} />
