@@ -7,11 +7,11 @@
     //   resetFormValues();
     //   deleteElement();
     // };
-    // const handleCancel = (e: React.MouseEvent<HTMLButtonElement>) => {
-    //   e.preventDefault();
-    //   resetFormValues();
-    //   setForm(false);
-    // };
+    const handleCancel = (e) => {
+      e.preventDefault();
+      resetFormValues();
+      setForm(false);
+    };
     // const handleSave = (e: React.MouseEvent<HTMLButtonElement>) => {
     //   e.preventDefault();
     //   displayElement();
@@ -21,11 +21,11 @@
   
     return (
       <div className="buttons">
-        <button className="white" >
+        {/* <button className="white" >
           <p>Delete</p>
-        </button>
+        </button> */}
         <div className="flex-wrap">
-          <button className="white" >
+          <button className="white" onClick={() => handleCancel()}>
             Cancel
           </button>
           <button className="blue" >

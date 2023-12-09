@@ -1,48 +1,11 @@
-import { useState } from "react";
 import { DragDropContext, Droppable } from "@hello-pangea/dnd";
 import Form from "../../../components/Form";
-
-const static_items = [
-  {
-    id: 1,
-    content: "Education",
-    subItems: [
-      {
-        id: 10,
-        content: "Standford University",
-      },
-      {
-        id: 11,
-        content: "Hardvard University",
-      },
-      {
-        id: 102,
-        content: "Fusion University",
-      },
-      {
-        id: 112,
-        content: "ttt University",
-      },
-    ],
-  },
-  {
-    id: 2,
-    content: "Experience",
-    subItems: [
-      {
-        id: 20,
-        content: "Google ",
-      },
-      {
-        id: 21,
-        content: "Meta",
-      },
-    ],
-  },
-];
+import { useDispatch, useSelector } from "react-redux";
+import { setForms } from "../../../redux/resumeSlice";
 
 const Forms = () => {
-  const [items, setItems] = useState(static_items);
+  const forms = useSelector((state) => state.resumes.forms);
+  const dispatch = useDispatch();
 
   const reorder = (list, startIndex, endIndex) => {
     const result = Array.from(list);
@@ -58,15 +21,15 @@ const Forms = () => {
     }
     if (result.type === "droppableItem") {
       const updatedItems = reorder(
-        items,
+        forms,
         result.source.index,
         result.destination.index
       );
-      setItems(updatedItems);
+      dispatch(setForms(updatedItems));
     } else if (result.type.includes("droppableSubItem")) {
       const parentId = parseInt(result.type.split("-")[1]);
-      const itemSubItemMap = items.reduce((acc, item) => {
-        acc[item.id] = item.subItems;
+      const itemSubItemMap = forms.reduce((acc, form) => {
+        acc[form.id] = form.subItems;
         return acc;
       }, {});
 
@@ -74,13 +37,14 @@ const Forms = () => {
       const reorderedSubItems = Array.from(subItemsForCorrespondingParent);
       const [removed] = reorderedSubItems.splice(result.source.index, 1);
       reorderedSubItems.splice(result.destination.index, 0, removed);
-      const newItems = items.map((item) => {
-        if (item.id === parentId) {
-          item.subItems = reorderedSubItems;
+      const newItems = forms.map((form) => {
+        if (form.id === parentId) {
+          return { ...form, subItems: reorderedSubItems };
         }
-        return item;
+        return form;
       });
-      setItems(newItems);
+
+      dispatch(setForms(newItems));
     }
   };
 
@@ -90,14 +54,14 @@ const Forms = () => {
         <Droppable droppableId="droppable" type="droppableItem">
           {(provided) => (
             <div ref={provided.innerRef} className="forms">
-              {items.map((item, index) => (
+              {forms.map((form, index) => (
                 <Form
-                  key={item.id}
-                  draggableId={item.id.toString()}
+                  key={form.id}
+                  draggableId={form.id.toString()}
                   index={index}
-                  formTitle={item.content}
-                  subItems={item.subItems}
-                  subItemsType={item.id.toString()}
+                  formTitle={form.content}
+                  subItems={form.subItems}
+                  subItemsType={form.id.toString()}
                 />
               ))}
               {provided.placeholder}

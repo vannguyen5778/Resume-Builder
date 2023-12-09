@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { v4 as uuidv4 } from "uuid";
 
 const formsTitle = [
   "Education",
@@ -14,7 +13,7 @@ const initialState = {
       id: 1,
       name: "Front-end dev",
       resume: [
-        { id: 0, content: "Education", subItems: [{ time: "24 dec",  }] },
+        { id: 0, content: "Education", subItems: [{ time: "24 dec" }] },
         { id: 1, content: "Experience", subItems: [{ time: "24 dec" }] },
         { id: 2, content: "Education", subItems: [{ time: "24 dec" }] },
       ],
@@ -33,16 +32,22 @@ const initialState = {
         {
           id: 10,
           content: "Standford University",
+          isExpanded: false,
         },
         {
           id: 11,
           content: "Hardvard University",
+          isExpanded: false,
+
         },
         {
           id: 12,
           content: "Bashkir University",
-          time: '17.5'
+          time: "17.5",
+          isExpanded: false,
+
         },
+        { id: new Date().getTime(), content: "Not specified" },
       ],
     },
     {
@@ -60,7 +65,44 @@ const initialState = {
       ],
     },
   ],
-  
+  // const [formValues, setFormValues] = useState<FormValues>({
+  //   personalInfo: {
+  //     fullName: "",
+  //     email: "",
+  //     phone: undefined,
+  //     address: "",
+  //   },
+
+  //   education: {
+  //     school: "",
+  //     degree: "",
+  //     start: "",
+  //     end: "",
+  //     description: "",
+  //   },
+  //   experience: {
+  //     company: "",
+  //     position: "",
+  //     start: "",
+  //     end: "",
+  //     description: "",
+  //   },
+  //   projects: {
+  //     project: "",
+  //     description: "",
+  //     tech: "",
+  //     start: "",
+  //     end: "",
+  //     link: "",
+  //   },
+  //   skills: {
+  //     skills: "",
+  //   },
+  //   certificates: {
+  //     certificate: "",
+  //     level: "",
+  //   },
+  // });
 };
 
 export const resumes = createSlice({
@@ -81,7 +123,7 @@ export const resumes = createSlice({
     },
 
     addResume(state) {
-      state.resumes.push({ id: uuidv4(), data: state.resume });
+      state.resumes.push({ id: new Date().getTime(), data: state.resume });
     },
     setForms(state, action) {
       state.forms = action.payload;
@@ -90,24 +132,54 @@ export const resumes = createSlice({
       const [formId, subItemId] = action.payload;
       state.forms = state.forms.map((form) => {
         if (Number(formId) === form.id) {
-          form.subItems = form.subItems.filter(subItem => subItem.id !== Number(subItemId));
+          form.subItems = form.subItems.filter(
+            (subItem) => subItem.id !== Number(subItemId)
+          );
+        }
+        return form;
+      });
+    },
+    addFormItem(state, action) {
+      const formId = action.payload;
+      state.forms = state.forms.map((form) => {
+        if (formId === form.id) {
+          form.subItems = form.subItems.map((subItem) => ({
+            ...subItem,
+            isExpanded: false,
+          }));
+          form.subItems.push({id: new Date().getTime(), content: "Not specified", isExpanded: true});
+        }
+        return form;
+      });
+    },
+   
+    setIsExpanded(state, action) {
+      const [formId, subItemId] = action.payload;
+      state.forms = state.forms.map((form) => {
+        if (Number(formId) === form.id) {
+          form.subItems = form.subItems.map((subItem) => {
+            if (subItem.id === Number(subItemId)) {
+              return { ...subItem, isExpanded: !subItem.isExpanded };
+            } else {
+              return { ...subItem, isExpanded: false };
+            }
+          });
         }
         return form;
       });
     }
-      // const updatedForms = state.forms.map((form) => {
-      //   if (Number(formId) === form.id) {
-      //     const updatedSubItems = form.subItems.filter(subItem => subItem.id !== Number(subItemId))
-      //     return {...form, subItems: updatedSubItems }
-      //   } return form;
-      // })
-      // setForms(updatedForms);
-
-    // }
   },
 });
 
-export const { setResumes, removeResume, clearResumes, addResume, setForms, deleteFormItem } =
-  resumes.actions;
+export const {
+  setResumes,
+  removeResume,
+  clearResumes,
+  addResume,
+  setForms,
+  deleteFormItem,
+  addFormItem,
+  setIsExpanded
+} = resumes.actions;
 
 export default resumes.reducer;

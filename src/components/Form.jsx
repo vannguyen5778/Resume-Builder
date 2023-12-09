@@ -2,11 +2,9 @@ import { Draggable } from "@hello-pangea/dnd";
 import PropTypes from "prop-types";
 import FormItems from "./FormItems";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCirclePlus, faTrashCan } from "@fortawesome/free-solid-svg-icons";
-import Input from "./Input";
-import Textarea from "./Textarea";
-import Buttons from "./Buttons";
-import { useState } from "react";
+import { faCirclePlus } from "@fortawesome/free-solid-svg-icons";
+import { addFormItem } from "../redux/resumeSlice";
+import { useDispatch } from "react-redux";
 
 const Form = ({
   key,
@@ -16,6 +14,7 @@ const Form = ({
   subItems,
   subItemsType,
 }) => {
+  const dispatch = useDispatch();
 
 
   return (
@@ -44,84 +43,16 @@ const Form = ({
               </span>
               <div className="header">
                 <h3 className="title">{formTitle}</h3>
-                <FontAwesomeIcon className="add-item" icon={faCirclePlus} />
+                <FontAwesomeIcon className="add-item" icon={faCirclePlus} onClick={() => dispatch(addFormItem(Number(draggableId)))}/>
               </div>
               <FormItems subItems={subItems} type={subItemsType} />
             </div>
-
             {provided.placeholder}
+            
           </div>
         )}
       </Draggable>
-      <form
-        id="education"
-        className="education ctn"
-        target="_blank"
-        // onSubmit={onSubmit}
-        method="POST"
-      >
-        <Input
-          title="School"
-          name="school"
-          placeholder="Enter school/ university"
-          // value={
-          // isEditing
-          //   ? savedForm.education.school
-          // : formValues.education.school
-          // }
-          // onInput={handleInputChange}
-        />
-
-        <Input
-          type="email"
-          title="Degree"
-          name="degree"
-          placeholder="Enter degree/ field of study"
-          // value={
-          //   isEditing
-          //     ? savedForm.education.degree
-          //     : formValues.education.degree
-          // }
-          // onInput={handleInputChange}
-        />
-        <div className="flex-wrap">
-          <Input
-            title="Start Date"
-            name="start"
-            placeholder="Enter start date"
-            // value={
-            //   isEditing
-            //     ? savedForm.education.start
-            //     : formValues.education.start
-            // }
-            // onInput={handleInputChange}
-          />
-          <Input
-            title="End Date"
-            name="end"
-            placeholder="Enter end date"
-            // value={
-            //   isEditing ? savedForm.education.end : formValues.education.end
-            // }
-            // onInput={handleInputChange}
-          />
-        </div>
-
-        <Textarea
-          // value={
-          //   isEditing
-          //     ? savedForm.education.description
-          //     : formValues.education.description
-          // }
-          // onInput={handleInputChange}
-          title="Description"
-          name="description"
-          addonTag="optional"
-          placeholder="Enter description"
-        />
-
-        {/* <Buttons /> */}
-      </form>
+      
     </>
   );
 };
