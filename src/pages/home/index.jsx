@@ -17,6 +17,7 @@ import Carousel from "./TemplateCarousel";
 import AutoplaySlider from "./AutoplaySlider";
 import CardAnimation from "./Animations";
 import { motion } from "framer-motion";
+import Navbar from "../../components/Navbar";
 
 const Home = () => {
   const slidingImg = {
@@ -26,6 +27,8 @@ const Home = () => {
   };
   return (
     <>
+      <Navbar />
+
       <div className="home">
         <section className="intro section">
           <p className="title">ONLINE RESUME BUILDER</p>

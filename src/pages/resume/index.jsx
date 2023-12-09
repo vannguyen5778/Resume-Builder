@@ -1,10 +1,17 @@
 import Forms from "./forms";
 import Display from "./display";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
 
 function Resume() {
   return (
     <div className="resume">
+      <Link to="/resumes"><button className="return-back">
+        <FontAwesomeIcon icon={faArrowLeft} className="return-i" />
+        back
+      </button>
+      </Link>
       <Forms />
       <Display />
     </div>
