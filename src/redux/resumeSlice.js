@@ -33,6 +33,7 @@ const initialState = {
           id: 10,
           content: "Standford University",
           isExpanded: false,
+
         },
         {
           id: 11,
@@ -130,20 +131,19 @@ export const resumes = createSlice({
     },
     deleteFormItem(state, action) {
       const [formId, subItemId] = action.payload;
-      state.forms = state.forms.map((form) => {
+      state.forms.forEach((form) => {
         if (Number(formId) === form.id) {
           form.subItems = form.subItems.filter(
             (subItem) => subItem.id !== Number(subItemId)
           );
         }
-        return form;
       });
     },
     addFormItem(state, action) {
       const formId = action.payload;
-      state.forms = state.forms.map((form) => {
-        if (formId === form.id) {
-          form.subItems = form.subItems.map((subItem) => ({
+      state.forms.forEach((form) => {
+        if (Number(formId) === form.id) {
+          form.subItems.forEach((subItem) => ({
             ...subItem,
             isExpanded: false,
           }));
@@ -161,12 +161,32 @@ export const resumes = createSlice({
             if (subItem.id === Number(subItemId)) {
               return { ...subItem, isExpanded: !subItem.isExpanded };
             } else {
-              return { ...subItem, isExpanded: false };
+              return { ...subItem, isExpanded: false }; // Close previously opened form
             }
           });
+        } else {
+          form.subItems = form.subItems.map((subItem) => ({
+            ...subItem,
+            isExpanded: false, // Close all other forms
+          }));
         }
         return form;
       });
+    },
+
+    onDragExpand(state, action) {
+      const [formId, subItemId, isExpandedState] = action.payload;
+      const form = state.forms.find(form => form.id === Number(formId));
+      const subItem = form.subItems.find(subItem => subItemId === subItem.id);
+      subItem.isExpanded = isExpandedState;
+      console.log(subItem.isExpanded);
+    },
+
+    handleInputChange(state, action) {
+      const [formId, subItemId, name, value] = action.payload;
+      const form = state.forms.find(form => form.id === Number(formId));
+      const subItem = form.subItems.find(subItem => subItemId === subItem.id);
+      subItem[name] = value;
     }
   },
 });
@@ -179,7 +199,9 @@ export const {
   setForms,
   deleteFormItem,
   addFormItem,
-  setIsExpanded
+  setIsExpanded,
+  handleInputChange,
+  onDragExpand
 } = resumes.actions;
 
 export default resumes.reducer;

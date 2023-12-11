@@ -45,7 +45,7 @@ const Form = ({
                 <h3 className="title">{formTitle}</h3>
                 <FontAwesomeIcon className="add-item" icon={faCirclePlus} onClick={() => dispatch(addFormItem(Number(draggableId)))}/>
               </div>
-              <FormItems subItems={subItems} type={subItemsType} />
+              <FormItems subItems={subItems} type={subItemsType} formTitle={formTitle}/>
             </div>
             {provided.placeholder}
             

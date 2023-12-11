@@ -8,11 +8,12 @@ import { Droppable, Draggable } from "@hello-pangea/dnd";
 import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
 import { deleteFormItem, setIsExpanded } from "../redux/resumeSlice";
-import Textarea from "./Textarea";
-import Input from "./Input";
+import { FormField } from "./InputFields";
+// import { useCallback } from "react";
 
-const FormItems = ({ subItems, type }) => {
+const FormItems = ({ subItems, type, formTitle }) => {
   const dispatch = useDispatch();
+  console.log("formTittle here", formTitle)
 
   return (
     <Droppable droppableId={type} type={`droppableSubItem-${type}`}>
@@ -65,74 +66,7 @@ const FormItems = ({ subItems, type }) => {
                   </div>
 
                   {provided.placeholder}
-                  {item.isExpanded && (
-                    <form
-                      id="education"
-                      className="education ctn"
-                      target="_blank"
-                      method="POST"
-                    >
-                      <Input
-                        title="School"
-                        name="school"
-                        placeholder="Enter school/ university"
-                        // value={
-                        // isEditing
-                        //   ? savedForm.education.school
-                        // : formValues.education.school
-                        // }
-                        // onInput={handleInputChange}
-                      />
-
-                      <Input
-                        type="email"
-                        title="Degree"
-                        name="degree"
-                        placeholder="Enter degree/ field of study"
-                        // value={
-                        //   isEditing
-                        //     ? savedForm.education.degree
-                        //     : formValues.education.degree
-                        // }
-                        // onInput={handleInputChange}
-                      />
-                      <div className="flex-wrap">
-                        <Input
-                          title="Start Date"
-                          name="start"
-                          placeholder="Enter start date"
-                          // value={
-                          //   isEditing
-                          //     ? savedForm.education.start
-                          //     : formValues.education.start
-                          // }
-                          // onInput={handleInputChange}
-                        />
-                        <Input
-                          title="End Date"
-                          name="end"
-                          placeholder="Enter end date"
-                          // value={
-                          //   isEditing ? savedForm.education.end : formValues.education.end
-                          // }
-                          // onInput={handleInputChange}
-                        />
-                      </div>
-
-                      <Textarea
-                        // value={
-                        //   isEditing
-                        //     ? savedForm.education.description
-                        //     : formValues.education.description
-                        // }
-                        // onInput={handleInputChange}
-                        title="Description"
-                        name="description"
-                        addonTag="optional"
-                        placeholder="Enter description"
-                      />
-                    </form>
-                  )}
+                  {item.isExpanded && <FormField item={item} type={type} formTitle={formTitle} />}
                 </div>
               )}
             </Draggable>
@@ -148,5 +82,6 @@ export default FormItems;
 
 FormItems.propTypes = {
   type: PropTypes.string,
+  formTitle: PropTypes.string,
   subItems: PropTypes.array,
 };
