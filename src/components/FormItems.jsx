@@ -13,7 +13,7 @@ import { FormField } from "./InputFields";
 
 const FormItems = ({ subItems, type, formTitle }) => {
   const dispatch = useDispatch();
-  console.log("formTittle here", formTitle)
+  console.log("formTittle here", formTitle);
 
   return (
     <Droppable droppableId={type} type={`droppableSubItem-${type}`}>
@@ -28,12 +28,7 @@ const FormItems = ({ subItems, type, formTitle }) => {
               {(provided, snapshot) => (
                 <div
                   className="items-wrapper"
-                  style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    border: "1px solid rgb(243, 244, 255)",
-                    borderRadius: "4px",
-                  }}
+                  
                 >
                   <div
                     ref={provided.innerRef}
@@ -66,7 +61,9 @@ const FormItems = ({ subItems, type, formTitle }) => {
                   </div>
 
                   {provided.placeholder}
-                  {item.isExpanded && <FormField item={item} type={type} formTitle={formTitle} />}
+                  {item.isExpanded && (
+                    <FormField item={item} type={type} formTitle={formTitle} />
+                  )}
                 </div>
               )}
             </Draggable>
@@ -77,6 +74,8 @@ const FormItems = ({ subItems, type, formTitle }) => {
     </Droppable>
   );
 };
+
+
 
 export default FormItems;
 

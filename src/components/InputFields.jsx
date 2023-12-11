@@ -6,14 +6,103 @@ import Textarea from "./Textarea";
 
 export const FormField = ({ item, type, formTitle }) => {
   const dispatch = useDispatch();
-  console.log(formTitle)
+  console.log(formTitle);
   switch (formTitle) {
-    
     case "Experience":
       return (
         <form
-        id="education"
-        
+          id="experience"
+          className="experience ctn"
+          target="_blank"
+          method="POST"
+        >
+          <Input
+            title="Company name"
+            name="company"
+            placeholder="Enter company name"
+            value={item.content}
+            onInput={(e) =>
+              dispatch(
+                handleInputChange([type, item.id, "content", e.target.value])
+              )
+            }
+          />
+
+          <Input
+            title="Position title"
+            name="position"
+            placeholder="Enter position title"
+            value={item.position}
+            onInput={(e) =>
+              dispatch(
+                handleInputChange([
+                  type,
+                  item.id,
+                  e.target.name,
+                  e.target.value,
+                ])
+              )
+            }
+          />
+
+          <div className="flex-wrap">
+            <Input
+              title="Start Date"
+              name="start"
+              placeholder="Enter start date"
+              value={item.start}
+              onInput={(e) =>
+                dispatch(
+                  handleInputChange([
+                    type,
+                    item.id,
+                    e.target.name,
+                    e.target.value,
+                  ])
+                )
+              }
+            />
+            <Input
+              title="End Date"
+              name="end"
+              placeholder="Enter end date"
+              value={item.end}
+              onInput={(e) =>
+                dispatch(
+                  handleInputChange([
+                    type,
+                    item.id,
+                    e.target.name,
+                    e.target.value,
+                  ])
+                )
+              }
+            />
+          </div>
+          <Textarea
+            title="Description"
+            name="description"
+            addonTag="optional"
+            placeholder="Enter description"
+            value={item.description}
+            onInput={(e) =>
+              dispatch(
+                handleInputChange([
+                  type,
+                  item.id,
+                  e.target.name,
+                  e.target.value,
+                ])
+              )
+            }
+          />
+        </form>
+      );
+
+    case "Education":
+      return (
+        <form
+          id="education"
           className="education ctn"
           target="_blank"
           method="POST"
@@ -101,98 +190,6 @@ export const FormField = ({ item, type, formTitle }) => {
           />
         </form>
       );
-
-    case "Education":
-          return (
-            <form
-              id="education"
-              className="education ctn"
-              target="_blank"
-              method="POST"
-            >
-              <Input
-                title="School"
-                name="school"
-                placeholder="Enter school/ university"
-                value={item.content}
-                onInput={(e) =>
-                  dispatch(
-                    handleInputChange([type, item.id, "content", e.target.value])
-                  )
-                }
-              />
-    
-              <Input
-                type="email"
-                title="Degree"
-                name="degree"
-                placeholder="Enter degree/ field of study"
-                value={item.degree}
-                onInput={(e) =>
-                  dispatch(
-                    handleInputChange([
-                      type,
-                      item.id,
-                      e.target.name,
-                      e.target.value,
-                    ])
-                  )
-                }
-              />
-              <div className="flex-wrap">
-                <Input
-                  title="Start Date"
-                  name="start"
-                  placeholder="Enter start date"
-                  value={item.start}
-                  onInput={(e) =>
-                    dispatch(
-                      handleInputChange([
-                        type,
-                        item.id,
-                        e.target.name,
-                        e.target.value,
-                      ])
-                    )
-                  }
-                />
-                <Input
-                  title="End Date"
-                  name="end"
-                  placeholder="Enter end date"
-                  value={item.end}
-                  onInput={(e) =>
-                    dispatch(
-                      handleInputChange([
-                        type,
-                        item.id,
-                        e.target.name,
-                        e.target.value,
-                      ])
-                    )
-                  }
-                />
-              </div>
-    
-              <Textarea
-                title="Description"
-                name="description"
-                addonTag="optional"
-                placeholder="Enter description"
-                value={item.description}
-                onInput={(e) =>
-                  dispatch(
-                    handleInputChange([
-                      type,
-                      item.id,
-                      e.target.name,
-                      e.target.value,
-                    ])
-                  )
-                }
-              />
-            </form>
-          );
 
     case "Projects":
       return (
@@ -356,7 +353,6 @@ export const FormField = ({ item, type, formTitle }) => {
       );
   }
 };
-
 
 FormField.propTypes = {
   item: PropTypes.object,
