@@ -351,6 +351,88 @@ export const FormField = ({ item, type, formTitle }) => {
           />
         </form>
       );
+
+    case "PersonalInfo":
+      return (
+        <form
+          id="personaldetails"
+          className="personal-details ctn"
+          target="_blank"
+          method="POST"
+        >
+          <Input
+            title="Full name"
+            name="fullName"
+            id="fullName"
+            placeholder="Enter first and last name"
+            value={item.fullName}
+            onInput={(e) =>
+              dispatch(
+                handleInputChange([
+                  type,
+                  item.id,
+                  e.target.name,
+                  e.target.value,
+                ])
+              )
+            }
+          />
+
+          <Input
+            type="email"
+            title="Email"
+            name="email"
+            addonTag="recommended"
+            placeholder="Enter email"
+            value={item.email}
+            onInput={(e) =>
+              dispatch(
+                handleInputChange([
+                  type,
+                  item.id,
+                  e.target.name,
+                  e.target.value,
+                ])
+              )
+            }
+          />
+          <Input
+            type="tel"
+            title="Phone number"
+            name="phone"
+            addonTag="recommended"
+            placeholder="Enter phone number"
+            value={item.phone}
+            onInput={(e) =>
+              dispatch(
+                handleInputChange([
+                  type,
+                  item.id,
+                  e.target.name,
+                  e.target.value,
+                ])
+              )
+            }
+          />
+          <Input
+            title="Address"
+            name="address"
+            addonTag="recommended"
+            placeholder="City, Country"
+            value={item.address}
+            onInput={(e) =>
+              dispatch(
+                handleInputChange([
+                  type,
+                  item.id,
+                  e.target.name,
+                  e.target.value,
+                ])
+              )
+            }
+          />
+        </form>
+      );
   }
 };
 

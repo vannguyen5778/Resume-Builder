@@ -1,21 +1,27 @@
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useSelector } from "react-redux";
+import styles from "./Display.module.scss";
 
 const Display = () => {
+  const forms = useSelector((state) => state.resumes.forms);
+
   const eduSnippet = (form) => {
     const { content, start, end, degree, description } = form;
+
     return (
       <>
-        <div className="flexbox">
-          <div className="bold school">{content}</div>
-          <div className="time">
-            <span className="start">{start}</span> -
-            <span className="end">{end}</span>
+        <div className={styles.flexbox}>
+          <div className={styles.bold}>{content}</div>
+          <div className={styles.time}>
+            <span className={styles.start}>{start}</span>{" "}
+            { start && start.length > 0 && <span>-</span>}{" "}
+            <span className={styles.end}>{end}</span>
           </div>
         </div>
-        <div className="cursive degree">{degree}</div>
-        <ul className="resume-ul">
-          <li className="description">{description}</li>
+        <div className={styles.cursive}>{degree}</div>
+        <ul className={styles.resumeUl}>
+          <li className={styles.description}>{description}</li>
         </ul>
       </>
     );
@@ -25,42 +31,45 @@ const Display = () => {
 
     return (
       <>
-        <div className="flexbox">
-          <div className="position">
-            <span className="bold">{position}</span> at{" "}
-            <span className="bold">{content}</span>
+        <div className={styles.flexbox}>
+          <div className={styles.position}>
+            <span className={styles.bold}>{position}</span>{" "}
+                  { position && position.length > 0 && <span>at</span>}{" "}
+            <span className={styles.bold}>{content}</span>
           </div>
-          <div className="time">
-            <span className="start">{start}</span> -
-            <span className="end">{end}</span>
+          <div className={styles.time}>
+            <span className={styles.start}>{start}</span>{" "}
+            { start && start.length > 0 && <span>-</span>}{" "}
+            <span className={styles.end}>{end}</span>
           </div>
         </div>
-        <div className="cursive degree">{location}</div>
-        <ul className="resume-ul">
-          <li className="description">{description}</li>
+        <div className={styles.cursive}>{location}</div>
+        <ul className={styles.resumeUl}>
+          <li className={styles.description}>{description}</li>
         </ul>
       </>
     );
   };
   const projectsSnippet = (form) => {
-    const { project, description, tech, start, end, link } = form;
+    const { content, description, tech, start, end, link } = form;
     return (
       <>
-        <div className="flexbox">
-          <div className="bold project">{project}</div>
-          <div className="time">
-            <span className="start">{start}</span> -
-            <span className="end">{end}</span>
+        <div className={styles.flexbox}>
+          <div className={styles.bold}>{content}</div>
+          <div className={styles.time}>
+            <span className={styles.start}>{start}</span>{" "}
+            { start && start.length > 0 && <span>-</span>}{" "}
+            <span className={styles.end}>{end}</span>
           </div>
         </div>
-        <div className="cursive technologies">
-          <span>Techologies used: </span>
+        <div className={styles.cursive}>
+          { tech && tech.length > 0 && <span>Techologies used: </span>}
           {tech}
         </div>
-        <ul className="resume-ul ">
-          <li className="description">{description}</li>
-          <li className="link">
-            <span>Demo link: </span> {link}
+        <ul className={styles.resumeUl}>
+          <li className={styles.description}>{description}</li>
+          <li className={styles.link}>
+            { link && link.length > 0 && <span>Demo link: </span>} {link}
           </li>
         </ul>
       </>
@@ -70,83 +79,97 @@ const Display = () => {
   const skillsSnippet = (form) => {
     const { content } = form;
     return (
-      <div className="flexbox">
-      <div className="bold skills description">{content}</div>
-    </div>
-    )
-  }
+      <div className={styles.flexbox}>
+        <div className={styles.description}>{content}</div>
+      </div>
+    );
+  };
   const certificatesSnippet = (form) => {
-    const { certificate, level } = form;
+    const { content, level } = form;
     return (
-      <div className="flexbox">
-                  <div className="certificates section">
-                    {certificate} - <span className="level">{level}</span>
-                  </div>
-                </div>
-    )
-  }
-
+      <div className={styles.flexbox}>
+        <div className={styles.section}>
+          {content} { level && level.length > 0 && <span>-</span>}{" "}
+          <span className={styles.level}>{level}</span>
+        </div>
+      </div>
+    );
+  };
 
   return (
-    <div className="display">
-      <div className="top-section">
-        <div className="toggle">
-          <button className="clear-resume">
-            <FontAwesomeIcon className="clear-i" icon={faTrashCan} />
+    <div className={styles.root}>
+      <div className={styles.topSection}>
+        <div className={styles.toggle}>
+          <button className={styles.clearResume}>
+            <FontAwesomeIcon className={styles.clearIcon} icon={faTrashCan} />
             Clear Resume
           </button>
-          <button className="load-resume">Load Example</button>
+          <button className={styles.loadResume}>Load Example</button>
         </div>
-        <button className="button">Download PDF</button>
+        <button className={styles.button}>Download PDF</button>
       </div>
-      <div className="canva">
+      <div className={styles.canva}>
+        <div className={styles.resumeCtn} id="resumeCtn">
+          {forms.map((form) => {
+            const contentLowerCase = form.content.toLowerCase();
+            const sectionClassName = `${contentLowerCase} section`;
+            console.log("forms", forms);
 
-      <div className="resume-ctn" id="resumeCtn">
-            {/* <header>
-              <h1 className="full-name" id="fullName">
-                {formValues.personalInfo.fullName}
-              </h1>
-              <div className="header-section">
-                <p className="email">{formValues.personalInfo.email}</p>
-                <p className="phone-number">{formValues.personalInfo.phone}</p>
-                <p className="address">{formValues.personalInfo.address}</p>
-              </div>
-            </header> */}
+            switch (form.content) {
+              case "Experience":
+                return (
+                  <div key={form.id} className={sectionClassName}>
+                    <h4 className={styles.section__header}>
+                      {form.content.toUpperCase()}
+                    </h4>
+                    {form.subItems.map((subItem) => experienceSnippet(subItem))}
+                  </div>
+                );
 
-            <div className="education section">
-              <h4>EDUCATION</h4>
-              {/* {formData.education.map((form) => eduSnippet(form))} */}
-              
-            </div>
+              case "Education":
+                return (
+                  <div key={form.id} className={sectionClassName}>
+                    <h4 className={styles.section__header}>
+                      {form.content.toUpperCase()}
+                    </h4>
+                    {form.subItems.map((subItem) => eduSnippet(subItem))}
+                  </div>
+                );
 
-            <div className="experience section">
-              <h4>EXPERIENCE</h4>
-              {/* {formData.experience.map((form) => experienceSnippet(form))} */}
+              case "Projects":
+                return (
+                  <div key={form.id} className={sectionClassName}>
+                    <h4>{form.content.toUpperCase()}</h4>
+                    {form.subItems.map((subItem) => projectsSnippet(subItem))}
+                  </div>
+                );
 
-             
-            </div>
+              case "Skills":
+                return (
+                  <div key={form.id} className={sectionClassName}>
+                    <h4>{form.content.toUpperCase()}</h4>
+                    {form.subItems.map((subItem) => skillsSnippet(subItem))}
+                  </div>
+                );
 
-            <div className="projects section">
-              <h4>PROJECTS</h4>
-              {/* {formData.projects.map((form) => projectsSnippet(form))} */}
-              
-            </div>
+              case "Certificates":
+                return (
+                  <div key={form.id} className={sectionClassName}>
+                    <h4 className={styles.section__header}>
+                      {form.content.toUpperCase()}
+                    </h4>
+                    {form.subItems.map((subItem) =>
+                      certificatesSnippet(subItem)
+                    )}
+                  </div>
+                );
 
-            <div className="skills section">
-              <h4>SKILLS</h4>
-              {/* {formData.skills.map((form) => skillsSnippet(form))} */}
-
-            <div className="certificates section">
-              <h4>CERTIFICATES</h4>
-              {/* {formData.certificates.map((form) => certificatesSnippet(form))} */}
-
-              
-            </div>
-
-          </div>
-          
+              default:
+                return null;
+            }
+          })}
+        </div>
       </div>
-    </div>
     </div>
   );
 };
