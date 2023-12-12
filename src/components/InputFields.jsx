@@ -1,12 +1,86 @@
-import { useDispatch } from "react-redux";
-import { handleInputChange } from "../redux/resumeSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { handleInputChange, handleKeyDown } from "../redux/resumeSlice";
 import Input from "./Input";
 import PropTypes from "prop-types";
 import Textarea from "./Textarea";
 
+export const PersonalInfo = () => {
+  const dispatch = useDispatch();
+  const form = useSelector((state) => state.resumes.forms).find(
+    (formEl) => formEl.content === "Personal Details"
+  );
+  const item = form.subItems[0];
+  const type = form.id;
+
+  return (
+    <div className="form">
+      <h3 className="title">{form.content}</h3>
+
+      <form
+        id="personaldetails"
+        className="personal-details ctn"
+        target="_blank"
+        method="POST"
+      >
+        <Input
+          title="Full name"
+          name="fullName"
+          id="fullName"
+          placeholder="Enter first and last name"
+          value={item.fullName}
+          onInput={(e) =>
+            dispatch(
+              handleInputChange([type, item.id, e.target.name, e.target.value])
+            )
+          }
+        />
+
+        <Input
+          type="email"
+          title="Email"
+          name="email"
+          addonTag="recommended"
+          placeholder="Enter email"
+          value={item.email}
+          onInput={(e) =>
+            dispatch(
+              handleInputChange([type, item.id, e.target.name, e.target.value])
+            )
+          }
+        />
+        <Input
+          type="tel"
+          title="Phone number"
+          name="phone"
+          addonTag="recommended"
+          placeholder="Enter phone number"
+          value={item.phone}
+          onInput={(e) =>
+            dispatch(
+              handleInputChange([type, item.id, e.target.name, e.target.value])
+            )
+          }
+        />
+        <Input
+          title="Address"
+          name="address"
+          addonTag="recommended"
+          placeholder="City, Country"
+          value={item.address}
+          onInput={(e) =>
+            dispatch(
+              handleInputChange([type, item.id, e.target.name, e.target.value])
+            )
+          }
+        />
+      </form>
+    </div>
+  );
+};
+
 export const FormField = ({ item, type, formTitle }) => {
   const dispatch = useDispatch();
-  console.log(formTitle);
+
   switch (formTitle) {
     case "Experience":
       return (
@@ -94,6 +168,9 @@ export const FormField = ({ item, type, formTitle }) => {
                   e.target.value,
                 ])
               )
+            }
+            onKeyDown={(e) =>
+              e.keyCode === 13 && handleKeyDown([type, item.id, e.target.name])
             }
           />
         </form>
@@ -187,6 +264,9 @@ export const FormField = ({ item, type, formTitle }) => {
                 ])
               )
             }
+            onKeyDown={(e) =>
+              e.keyCode === 13 && handleKeyDown([type, item.id, e.target.name])
+            }
           />
         </form>
       );
@@ -225,6 +305,9 @@ export const FormField = ({ item, type, formTitle }) => {
                   e.target.value,
                 ])
               )
+            }
+            onKeyDown={(e) =>
+              e.keyCode === 13 && handleKeyDown([type, item.id, e.target.name])
             }
           />
           <Input
@@ -338,88 +421,6 @@ export const FormField = ({ item, type, formTitle }) => {
             name="level"
             placeholder="Enter level of the certificate"
             value={item.level}
-            onInput={(e) =>
-              dispatch(
-                handleInputChange([
-                  type,
-                  item.id,
-                  e.target.name,
-                  e.target.value,
-                ])
-              )
-            }
-          />
-        </form>
-      );
-
-    case "PersonalInfo":
-      return (
-        <form
-          id="personaldetails"
-          className="personal-details ctn"
-          target="_blank"
-          method="POST"
-        >
-          <Input
-            title="Full name"
-            name="fullName"
-            id="fullName"
-            placeholder="Enter first and last name"
-            value={item.fullName}
-            onInput={(e) =>
-              dispatch(
-                handleInputChange([
-                  type,
-                  item.id,
-                  e.target.name,
-                  e.target.value,
-                ])
-              )
-            }
-          />
-
-          <Input
-            type="email"
-            title="Email"
-            name="email"
-            addonTag="recommended"
-            placeholder="Enter email"
-            value={item.email}
-            onInput={(e) =>
-              dispatch(
-                handleInputChange([
-                  type,
-                  item.id,
-                  e.target.name,
-                  e.target.value,
-                ])
-              )
-            }
-          />
-          <Input
-            type="tel"
-            title="Phone number"
-            name="phone"
-            addonTag="recommended"
-            placeholder="Enter phone number"
-            value={item.phone}
-            onInput={(e) =>
-              dispatch(
-                handleInputChange([
-                  type,
-                  item.id,
-                  e.target.name,
-                  e.target.value,
-                ])
-              )
-            }
-          />
-          <Input
-            title="Address"
-            name="address"
-            addonTag="recommended"
-            placeholder="City, Country"
-            value={item.address}
             onInput={(e) =>
               dispatch(
                 handleInputChange([

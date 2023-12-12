@@ -2,6 +2,7 @@ import { DragDropContext, Droppable } from "@hello-pangea/dnd";
 import Form from "../../../components/Form";
 import { useDispatch, useSelector } from "react-redux";
 import { setForms } from "../../../redux/resumeSlice";
+import { PersonalInfo } from "../../../components/InputFields";
 
 const Forms = () => {
   const forms = useSelector((state) => state.resumes.forms);
@@ -49,13 +50,14 @@ const Forms = () => {
   };
 
   return (
-    <>
+    <div className="forms">
+      <PersonalInfo />
       <DragDropContext onDragEnd={onDragEnd}>
         <Droppable droppableId="droppable" type="droppableItem">
           {(provided) => (
             <div ref={provided.innerRef} className="forms">
               {forms.map((form, index) => (
-                <Form
+                (form.content !== "Personal Details") && <Form
                   key={form.id}
                   draggableId={form.id.toString()}
                   index={index}
@@ -69,7 +71,7 @@ const Forms = () => {
           )}
         </Droppable>
       </DragDropContext>
-    </>
+    </div>
   );
 };
 

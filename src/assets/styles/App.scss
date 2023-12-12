@@ -843,13 +843,17 @@
     .forms {
       width: 50%;
       flex: 1;
-      padding: 70px 30px;
+      padding: 20px 30px;
       margin: 0 auto;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       gap: 30px;
+      &:first-of-type {
+       padding: 70px 30px;
+
+      }
       .form {
         background-color: #fff;
         position: relative;

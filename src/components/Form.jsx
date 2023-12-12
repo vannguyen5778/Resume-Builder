@@ -16,9 +16,7 @@ const Form = ({
 }) => {
   const dispatch = useDispatch();
 
-
   return (
-    
     <>
       <Draggable key={key} draggableId={draggableId} index={index}>
         {(provided, snapshot) => (
@@ -43,16 +41,22 @@ const Form = ({
               </span>
               <div className="header">
                 <h3 className="title">{formTitle}</h3>
-                <FontAwesomeIcon className="add-item" icon={faCirclePlus} onClick={() => dispatch(addFormItem(Number(draggableId)))}/>
+                <FontAwesomeIcon
+                  className="add-item"
+                  icon={faCirclePlus}
+                  onClick={() => dispatch(addFormItem(Number(draggableId)))}
+                />
               </div>
-              <FormItems subItems={subItems} type={subItemsType} formTitle={formTitle}/>
+              <FormItems
+                subItems={subItems}
+                type={subItemsType}
+                formTitle={formTitle}
+              />
             </div>
             {provided.placeholder}
-            
           </div>
         )}
       </Draggable>
-      
     </>
   );
 };
