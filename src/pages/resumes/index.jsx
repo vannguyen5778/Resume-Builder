@@ -6,17 +6,19 @@ import {
   faDownload,
   faCirclePlus,
 } from "@fortawesome/free-solid-svg-icons";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { addResume, setForms } from "../../redux/resumeSlice";
 import { useDispatch, useSelector } from "react-redux";
 import Navbar from "../../components/Navbar";
-import  { Tooltip }  from 'react-tooltip';
+import { Tooltip } from "react-tooltip";
+import { convertUnixtoDate } from "../../utils/convertUnixToDate";
 const Resumes = () => {
   const dispatch = useDispatch();
   const { resumes } = useSelector((state) => state.resumes);
 
   const handleEditResume = (resumeId) => {
     const resume = resumes.find((resume) => resume.id == resumeId);
+    navigate(`/resume/${resume.id}`);
     dispatch(setForms(resume.data));
   };
   const navigate = useNavigate();
@@ -28,7 +30,13 @@ const Resumes = () => {
 
   const handleAddNewResume = () => {
     getCurrentTime();
-    dispatch(addResume({ id: newID }));
+    dispatch(
+      addResume({
+        id: newID,
+        imgUrl: "",
+        lastUpdate: convertUnixtoDate(Date.now()),
+      })
+    );
     navigate(`/resume/${newID}`);
   };
 
@@ -48,20 +56,26 @@ const Resumes = () => {
         <main>
           {resumes.map((resume) => (
             <div key={new Date().getTime()} className="resume-wrapper">
-              <div className="preview-img"><img src={resume.imgUrl} alt="" /></div>
+              <div className="preview-img">
+                <img src={resume.imgUrl} alt="" />
+              </div>
               <div className="text-block">
                 <div className="top">
                   <div className="title-wrapper">
-                    <Link to={`/resume/${resume.id}`}>
-                      <span
-                        className="title"
-                        onClick={() => handleEditResume(resume.id)}
-                      >
-                        {resume.title || "Untitled"}{" "}
-                      </span>
-                    </Link>
-                    <FontAwesomeIcon className="pen-i" data-tooltip-id="rename-tooltip" data-tooltip-content="Rename" icon={faPenToSquare} />
-                    
+                    <span
+                      className="title"
+                      onClick={() => handleEditResume(resume.id)}
+                    >
+                      {resume.title || "Untitled"}{" "}
+                    </span>
+
+                    <FontAwesomeIcon
+                      className="pen-i"
+                      data-tooltip-id="rename-tooltip"
+                      data-tooltip-content="Rename"
+                      icon={faPenToSquare}
+                    />
+
                     <Tooltip id="rename-tooltip" />
                   </div>
                   <div className="last-update">
@@ -70,16 +84,15 @@ const Resumes = () => {
                 </div>
 
                 <ul className="functionalities">
-                  <Link to={`/resume/${resume.id}`}>
-                    <li>
-                      <FontAwesomeIcon
-                        className="func-i"
-                        icon={faPenToSquare}
-                        onClick={() => handleEditResume(resume.id)}
-                      />
-                      Edit
-                    </li>
-                  </Link>
+                  <li>
+                    <FontAwesomeIcon
+                      className="func-i"
+                      icon={faPenToSquare}
+                      onClick={() => handleEditResume(resume.id)}
+                    />
+                    Edit
+                  </li>
+
                   <li>
                     <FontAwesomeIcon
                       className="func-i"
