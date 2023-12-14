@@ -24,3 +24,8 @@ export const convertUnixtoDate = (unix) => {
     monthsNames[monthIndex]
   } ${hours.toString().padStart(2, "0")}:${minutes.toString().padStart(2, "0")}`;
 };
+
+
+export function getCurrentTime() {
+  return Date.now()
+}
