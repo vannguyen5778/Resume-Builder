@@ -13,7 +13,6 @@ import { FormField } from "./InputFields";
 
 const FormItems = ({ subItems, type, formTitle }) => {
   const dispatch = useDispatch();
-  console.log("formTittle here", formTitle);
 
   return (
     <Droppable droppableId={type} type={`droppableSubItem-${type}`}>

@@ -9,8 +9,6 @@
   src: url("https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700;800;900;1000&display=swap");
 }
 
-
-
 @mixin button {
   background-color: $blue;
   color: white;
@@ -60,23 +58,26 @@
       text-align: center;
       padding-top: 120px;
       margin: 0 auto;
-      gap: 20px;
+      gap: 12px;
       .title {
-        font-size: 13px;
+        font-size: 12px;
         font-weight: 700;
         padding: 20px 10px 0;
         color: $purple;
       }
       h2 {
-        max-width: 725px;
+        max-width: 675px;
+        font-size: 36px;
+        font-weight: 900;
+        line-height: 1.2em;
       }
       .description {
-        max-width: 600px;
-        font-size: 20px;
+        max-width: 550px;
+        font-size: 18px;
       }
       .button {
         @include button;
-        width: 240px;
+        width: 220px;
         height: 60px;
       }
       h4 {
@@ -434,10 +435,13 @@
 
       .description {
         padding: 20px 0;
-        max-width: 550px;
+        flex: 1;
+        max-width: 330px;
+        font-size: 16px;
+        z-index: 4;
       }
       h2 {
-        max-width: 700px;
+        max-width: 600px;
       }
 
       .mySwiper {
@@ -774,7 +778,9 @@
             opacity: 0.2;
             transition: all 0.2s ease-in;
             &:hover {
-              transform: scale(1.1);
+              transform: scale(1.2);
+              color: $blue;
+              opacity: 1;
             }
           }
         }
@@ -785,11 +791,31 @@
           justify-content: space-between;
 
           .top {
-            h3 {
-              font-weight: 600;
-              cursor: pointer;
-              text-transform: capitalize;
+            .title-wrapper {
+              &:hover .pen-i {
+                opacity: 0.2;
+              }
+              .pen-i {
+                font-size: 16px;
+                padding-left: 4px;
+                color: #000 !important;
+                opacity: 0;
+                &:hover {
+                  color: $blue !important;
+                  opacity: .8;
+                }
+              }
+              .title {
+                font-weight: 400;
+                font-size: 19px;
+                cursor: pointer;
+                text-transform: capitalize;
+                &:hover {
+                  color: $blue;
+                }
+              }
             }
+
             &.new {
               opacity: 0.6;
             }
@@ -797,6 +823,9 @@
           .functionalities {
             li {
               padding-bottom: 10px;
+              &:hover {
+                color: $blue;
+              }
 
               .func-i {
                 color: $blue;
@@ -851,8 +880,7 @@
       align-items: center;
       gap: 30px;
       &:first-of-type {
-       padding: 70px 30px;
-
+        padding: 70px 30px;
       }
       .form {
         background-color: #fff;
@@ -944,7 +972,6 @@
         }
       }
     }
-    
   }
 }
 

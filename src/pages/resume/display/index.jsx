@@ -7,7 +7,7 @@ import downloadPdf from "../../../utils/downloadPDF";
 
 const Display = () => {
   const forms = useSelector((state) => state.resumes.forms);
-  const personalInfoForm = useSelector((state) => state.resumes.forms).find(
+  const personalInfoForm = forms.find(
     (formEl) => formEl.content === "Personal Details"
   );
   const dispatch = useDispatch();
