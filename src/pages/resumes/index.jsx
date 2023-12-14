@@ -57,7 +57,7 @@ const Resumes = () => {
           {resumes.map((resume) => (
             <div key={new Date().getTime()} className="resume-wrapper">
               <div className="preview-img">
-                <img src={resume.imgUrl} alt="" />
+                {resume.imgUrl && (<img src={resume.imgUrl} alt="" />)}
               </div>
               <div className="text-block">
                 <div className="top">

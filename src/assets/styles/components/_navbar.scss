@@ -4,11 +4,28 @@ nav {
   position: fixed;
   z-index: 999;
   width: 100vw;
+  max-width: 100%;
   height: 80px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   font-size: 17px;
+  .user-circle {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 20px;
+    // opacity: .4;
+    background-color: rgb(237, 235, 235);
+    &:hover{border: 2px solid $blue;}
+    .user-i {
+      font-size: 14px;
+      opacity: .3;
+    }
+  }
 
   .logo {
     width: 90px;
