@@ -11,7 +11,9 @@ function App() {
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route path="/resumes" element={<Resumes />} />
-        <Route path="/resume" element={<Resume />} />
+        <Route path="/resume/:id" element={<Resume />} />
+        
+        
       </Routes>
     </div>
   );
@@ -55,3 +57,6 @@ export default App;
 // local storage redux persist
 // responsive home page !!!
 // login lgout validation react hook form
+
+
+// 12/12/23 localStorage, resumesPage, responsive, loginsignup

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import logo from "../assets/images/logo.png";
 import { motion, useMotionValueEvent, useScroll } from "framer-motion";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { HashLink } from 'react-router-hash-link';
 
 const Navbar = () => {
@@ -15,6 +15,7 @@ const Navbar = () => {
       setHidden(false);
     }
   });
+  const location = useLocation();
 
   return (
     <motion.nav
@@ -24,7 +25,7 @@ const Navbar = () => {
       transition={{ duration: 0.35, ease: "easeInOut" }}
     >
      <Link to="/"> <img className="logo" src={logo} alt="" /></Link>
-      <ul>
+      {location.pathname !== "/resumes" && (<><ul>
         <HashLink to="#about-us"><li>About us</li></HashLink>
         <HashLink to="#getting-started"><li>getting started</li></HashLink>
         <HashLink to="#templates"><li>Templates</li></HashLink>
@@ -34,9 +35,10 @@ const Navbar = () => {
       <div className="registration">
         <button className="login">Log In</button>
         <button className="signup">Sign Up</button>
-      </div>
+      </div></>)}
     </motion.nav>
   );
+
 };
 
 export default Navbar;
