@@ -3,6 +3,8 @@ import logo from "../assets/images/logo.png";
 import { motion, useMotionValueEvent, useScroll } from "framer-motion";
 import { Link, useLocation } from "react-router-dom";
 import { HashLink } from 'react-router-hash-link';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUser } from "@fortawesome/free-solid-svg-icons";
 
 const Navbar = () => {
   const [hidden, setHidden] = useState(false);
@@ -19,13 +21,13 @@ const Navbar = () => {
 
   return (
     <motion.nav
-      className={` background logo`}
+      className={`${location.pathname === "/resumes" ? 'white' : ''} logo`}
       variants={{ visible: { y: 0 }, hidden: { y: "-100%" } }}
       animate={hidden ? "hidden" : "visible"}
       transition={{ duration: 0.35, ease: "easeInOut" }}
     >
      <Link to="/"> <img className="logo" src={logo} alt="" /></Link>
-      {location.pathname !== "/resumes" && (<><ul>
+      {location.pathname !== "/resumes" ? (<><ul>
         <HashLink to="#about-us"><li>About us</li></HashLink>
         <HashLink to="#getting-started"><li>getting started</li></HashLink>
         <HashLink to="#templates"><li>Templates</li></HashLink>
@@ -35,7 +37,9 @@ const Navbar = () => {
       <div className="registration">
         <button className="login">Log In</button>
         <button className="signup">Sign Up</button>
-      </div></>)}
+      </div></>) : (
+        <span className="user-circle"><FontAwesomeIcon icon={faUser} className="user-i" /></span>
+      )}
     </motion.nav>
   );
 
