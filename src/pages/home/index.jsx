@@ -18,6 +18,7 @@ import AutoplaySlider from "./AutoplaySlider";
 import CardAnimation from "./Animations";
 import { motion } from "framer-motion";
 import Navbar from "../../components/Navbar";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   const slidingImg = {
@@ -35,12 +36,14 @@ const Home = () => {
           <h2>
             Only 2% of resumes make it past the first round. Be in the top 2%
           </h2>
-          <p className="description ">
+          <p className="description">
             Use professional field-tested resume templates that follow the exact
             ‘resume rules’ employers look for. Easy to use and done within
             minutes - try now for free!
           </p>
-          <button className="button">Create My Resume</button>
+          <Link to="/resumes">
+            <button className="button">Create My Resume</button>
+          </Link>
           <h4>31,749 resumes created today</h4>
           <motion.img
             src="https://s3.resume.io/cdn-cgi/image/width=770,height=350,dpr=1.5,fit=crop,gravity=top,quality=75,format=auto/uploads/local_template_image/image/488/persistent-resource/dublin-resume-templates.jpg"
@@ -49,7 +52,7 @@ const Home = () => {
             variants={slidingImg}
             initial="hidden"
             animate="show"
-            transition={{ duration: 2, ease: [0.25, 0.1, 0.2, 1]}}
+            transition={{ duration: 2, ease: [0.25, 0.1, 0.2, 1] }}
           />
         </section>
 
@@ -109,12 +112,14 @@ const Home = () => {
             alt=""
           />
           <h2>Create perfect resumes for the modern job market</h2>
-          <p className="description">
+          <p className="description secondary">
             Creating a resume has never been this easy! In three simple steps,
             create the perfect document to impress hiring managers and
             employers. Minimum time, maximum professional quality.
           </p>
-          <button className=".button">Get Started Now</button>
+          <Link to="/resumes">
+            <button className=".button">Get Started Now</button>
+          </Link>
           <div className="autoplay-wrap">
             <AutoplaySlider />
           </div>
@@ -138,9 +143,7 @@ const Home = () => {
 
         <section id="reviews" className="callToAction ">
           <div className="content-wrapper ">
-            <h2>
-              User-friendly. Professional. Effective. Try our CV builder today!
-            </h2>
+            <h2>User-friendly.<br />Professional.<br />Effective.</h2>
             <p className="description">
               How long does it take to write a resume? Hours? Days? With our
               resume maker you can be done in minutes. Create a convincing and
@@ -148,7 +151,9 @@ const Home = () => {
               pre-generated phrases, choose a design, fill in your details and
               ideas. Fast and simple.
             </p>
-            <button className="button">Try it now!</button>
+            <Link to="/resumes">
+              <button className="button">Try it now!</button>
+            </Link>
           </div>
           <img
             src="https://resume.io/assets/landing/home/letter-maker/visual-13cdbab63916313dab4caff704097bae2aafc990be5e86f9cc50260bffe6bc75.svg"
@@ -164,7 +169,9 @@ const Home = () => {
           <p className="description">
             Start for free — try our resume builder now
           </p>
-          <button className="button">Create My Resume</button>
+          <Link to="/resumes">
+            <button className="button">Create My Resume</button>
+          </Link>
         </section>
 
         <footer id="contact" className="footer">

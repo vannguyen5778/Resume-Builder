@@ -3,16 +3,8 @@ import { convertUnixtoDate } from "../utils/convertUnixToDate";
 import { emptyForm, defaultForm } from "./data";
 
 const initialState = {
-  resumes: [
-    // {
-    //   id: new Date().getTime(),
-    //   title: "",
-    //   lastUpdate: convertUnixtoDate(Date.now()),
-    //   imgUrl: "",
-    //   data: defaultForm,
-    // },
-  ],
-  forms: defaultForm,
+  resumes: [],
+  forms: [],
 };
 
 export const resumes = createSlice({
@@ -23,6 +15,25 @@ export const resumes = createSlice({
       state.resumes = action.payload;
     },
 
+    clearResumes(state) {
+      state.resumes = [];
+    },
+
+    addResume(state, action) {
+      state.resumes.push({ ...action.payload, data: defaultForm });
+      state.forms = defaultForm;
+    },
+    setForms(state, action) {
+      state.forms = action.payload;
+    },
+
+    loadExample(state) {
+      state.forms = defaultForm;
+    },
+
+    clearResume(state) {
+      state.forms = emptyForm;
+    },
     removeResume(state, action) {
       state.resumes = state.resumes.filter(
         (obj) => obj.id !== action.payload.id
@@ -33,26 +44,13 @@ export const resumes = createSlice({
       const resume = state.resumes.find((resume) => resume.id == resumeId);
       state.forms = resume.data;
     },
-    
+
     saveResume(state, action) {
       const resumeId = action.payload;
       const resume = state.resumes.find((resume) => resume.id == resumeId);
+      console.log("resumeid", resumeId);
       resume.data = state.forms;
       resume.lastUpdate = convertUnixtoDate(Date.now());
-    },
-
-    clearResumes(state) {
-      state.resumes = [];
-    },
-
-    addResume(state, action) {
-      state.resumes.push({ ...action.payload, data: emptyForm});
-      // console.log("addResume", { ...action.payload, data: emptyForm, imgUrl: "", lastUpdate: convertUnixtoDate(Date.now()) });
-      state.forms = emptyForm;
-    },
-    setForms(state, action) {
-      console.log("resume to set", action.payload);
-      state.forms = action.payload;
     },
     deleteFormItem(state, action) {
       const [formId, subItemId] = action.payload;
@@ -126,14 +124,6 @@ export const resumes = createSlice({
       if (subItem[name] !== "") {
         subItem[name] += "/n";
       }
-    },
-
-    loadExample(state) {
-      state.forms = defaultForm;
-    },
-
-    clearResume(state) {
-      state.forms = emptyForm;
     },
   },
 });
