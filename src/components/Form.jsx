@@ -18,7 +18,7 @@ const Form = ({
 
   return (
     <>
-      <Draggable key={key} draggableId={draggableId} index={index}>
+      <Draggable draggableId={draggableId} index={index}>
         {(provided, snapshot) => (
           <div>
             <div

@@ -1,6 +1,6 @@
 export const defaultForm = [
     {
-      id: 1,
+      id: 4534546,
       content: "Education",
       subItems: [
         {
@@ -17,7 +17,7 @@ export const defaultForm = [
       ],
     },
     {
-      id: 2,
+      id: 65734543,
       content: "Experience",
       subItems: [
         {
@@ -41,7 +41,7 @@ export const defaultForm = [
       ],
     },
     {
-      id: 3,
+      id: 45346463,
       content: "Skills",
       subItems: [
         {
@@ -52,7 +52,7 @@ export const defaultForm = [
       ],
     },
     {
-      id: 4,
+      id: 7684835,
       content: "Projects",
       subItems: [
         {
@@ -105,7 +105,7 @@ export const defaultForm = [
   
 export const emptyForm = [
     {
-      id: 1,
+      id: 574537,
       content: "Education",
       subItems: [
         {
@@ -120,7 +120,7 @@ export const emptyForm = [
       ],
     },
     {
-      id: 2,
+      id: 242345,
       content: "Experience",
       subItems: [
         {
@@ -134,7 +134,7 @@ export const emptyForm = [
       ],
     },
     {
-      id: 3,
+      id: 546365,
       content: "Skills",
       subItems: [
         {
@@ -144,7 +144,7 @@ export const emptyForm = [
       ],
     },
     {
-      id: 4,
+      id: 89798,
       content: "Projects",
       subItems: [
         {

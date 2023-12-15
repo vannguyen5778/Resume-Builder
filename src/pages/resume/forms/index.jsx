@@ -3,6 +3,7 @@ import Form from "../../../components/Form";
 import { useDispatch, useSelector } from "react-redux";
 import { setForms } from "../../../redux/resumeSlice";
 import { PersonalInfo } from "../../../components/InputFields";
+import React from "react";
 
 const Forms = () => {
   const forms = useSelector((state) => state.resumes.forms);
@@ -56,14 +57,16 @@ const Forms = () => {
           {(provided) => (
             <div ref={provided.innerRef} className="forms">
               {forms.map((form, index) => (
-                (form.content !== "Personal Details") && <Form
-                  key={form.id}
+                (form.content !== "Personal Details") && 
+                <React.Fragment key={form.id}>
+                <Form
+                  
                   draggableId={form.id.toString()}
                   index={index}
                   formTitle={form.content}
                   subItems={form.subItems}
                   subItemsType={form.id.toString()}
-                />
+                /></React.Fragment>
               ))}
               {provided.placeholder}
             </div>
