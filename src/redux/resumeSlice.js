@@ -1,17 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { convertUnixtoDate } from "../utils/convertUnixToDate";
-import { captureImage } from "../utils/downloadPDF";
 import { emptyForm, defaultForm } from "./data";
 
 const initialState = {
   resumes: [
-    {
-      id: new Date().getTime(),
-      title: "",
-      lastUpdate: convertUnixtoDate(Date.now()),
-      imgUrl: "",
-      data: defaultForm,
-    },
+    // {
+    //   id: new Date().getTime(),
+    //   title: "",
+    //   lastUpdate: convertUnixtoDate(Date.now()),
+    //   imgUrl: "",
+    //   data: defaultForm,
+    // },
   ],
   forms: defaultForm,
 };
@@ -34,26 +33,11 @@ export const resumes = createSlice({
       const resume = state.resumes.find((resume) => resume.id == resumeId);
       state.forms = resume.data;
     },
-    // updateImgUrl(state, action) {
-    //   const id = action.payload;
-    //   const index = resumes.findIndex((resume) => resume.id === id);
-
-    //   if (index !== -1) {
-    //     sta= {
-    //       ...resumes[index],
-    //       imgUrl: imageData,
-    //     };
-
-    //     // resumes.splice(index, 1, updatedResume);
-    // }
+    
     saveResume(state, action) {
       const resumeId = action.payload;
       const resume = state.resumes.find((resume) => resume.id == resumeId);
       resume.data = state.forms;
-      // captureImage("canva").then((imageData) => {
-      //   resume.imgUrl = imageData;
-      //   console.log(imageData);
-      // });
       resume.lastUpdate = convertUnixtoDate(Date.now());
     },
 

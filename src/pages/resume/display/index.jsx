@@ -3,36 +3,21 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./Display.module.scss";
 import { clearResume, loadExample } from "../../../redux/resumeSlice";
-import downloadPdf, { captureImage } from "../../../utils/downloadPDF";
-import { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import downloadPdf from "../../../utils/downloadPDF";
+
 
 const Display = () => {
-  const { id } = useParams();
-  const { forms, resumes } = useSelector((state) => state.resumes);
+  const { forms } = useSelector((state) => state.resumes);
 
-  useEffect(() => {
-    captureImage("canva")
-      .then((imageData) => {
-        const index = resumes.findIndex((resume) => resume.id == id);
-        if (index !== -1) {
-          const updatedResume = {
-            ...resumes[index],
-            imgUrl: imageData,
-          };
-        console.log(updatedResume)
+  const dispatch = useDispatch();
 
+  
+   
 
-          resumes.splice(index, 1, updatedResume);
-        }
-      })
-      .catch((err) => console.log(err));
-  }, [forms, id, resumes]);
 
   const personalInfoForm = forms.find(
     (formEl) => formEl.content === "Personal Details"
   );
-  const dispatch = useDispatch();
 
   const eduSnippet = (form) => {
     const { content, start, end, degree, description } = form;
@@ -165,6 +150,7 @@ const Display = () => {
         </button>
       </div>
       <div id="canva" className={styles.canva}>
+        {/* <img src={image} alt="" /> */}
         <div className={styles.resumeCtn} id="resumeCtn">
           <header>
             <h1 className={styles.fullName} id="fullName">

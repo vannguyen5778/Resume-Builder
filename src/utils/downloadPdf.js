@@ -8,7 +8,7 @@ export const captureImage = (rootElementId) => {
   });
 };
 
-const generatePdf = (imageData, downloadFileName) => {
+export const generatePdf = (imageData, downloadFileName) => {
   const pdf = new jsPDF("p", "mm");
   const pdfWidth = pdf.internal.pageSize.getWidth();
   const pdfHeight = pdf.internal.pageSize.getHeight();
