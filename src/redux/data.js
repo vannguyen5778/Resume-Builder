@@ -183,3 +183,11 @@ export const emptyForm = [
       ],
     },
   ];
+
+export const emptyResume = {
+  id: null,
+  title: "",
+  imgUrl: "",
+  lastUpdate: "",
+  data: emptyForm,
+}

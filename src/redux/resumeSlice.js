@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { convertUnixtoDate } from "../utils/convertUnixToDate";
-import { emptyForm, defaultForm } from "./data";
+import { emptyForm, defaultForm, emptyResume } from "./data";
 
 const initialState = {
   resumes: [],
@@ -39,18 +39,25 @@ export const resumes = createSlice({
         (obj) => obj.id !== action.payload.id
       );
     },
+   
     setResume(state, action) {
       const resumeId = action.payload;
-      const resume = state.resumes.find((resume) => resume.id == resumeId);
+      const resume = state.resumes.find((resume) => resume.id === Number(resumeId));
       state.forms = resume.data;
     },
 
     saveResume(state, action) {
       const resumeId = action.payload;
-      const resume = state.resumes.find((resume) => resume.id == resumeId);
-      console.log("resumeid", resumeId);
+      const resume = state.resumes.find((resume) => resume.id === Number(resumeId));      
       resume.data = state.forms;
       resume.lastUpdate = convertUnixtoDate(Date.now());
+    },
+    
+    updateResumeTitle(state, action) {
+      const [resumeId, value] = action.payload;
+      const resume = state.resumes.find((resume) => resume.id === Number(resumeId));
+      resume["title"] = value;
+
     },
     deleteFormItem(state, action) {
       const [formId, subItemId] = action.payload;
@@ -144,6 +151,7 @@ export const {
   loadExample,
   clearResume,
   setResume,
+  updateResumeTitle,
 } = resumes.actions;
 
 export default resumes.reducer;
