@@ -30,9 +30,9 @@ const Navbar = () => {
       animate={hidden ? "hidden" : "visible"}
       transition={{ duration: 0.35, ease: "easeInOut" }}
     >
-      <Link to="/">
+      <Link to="/" onClick={() => {window.scrollTo(0, 0)}}>
         {" "}
-        <img className="logo" src={logo} alt="" />
+        <img className="logo" src={logo} alt=""  />
       </Link>
       {location.pathname !== "/resumes" ? (
         <div className={`menu-wrapper ${isOpen ? "visible" : ""}`}>
