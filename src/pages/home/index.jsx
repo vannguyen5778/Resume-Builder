@@ -183,8 +183,10 @@ const Home = () => {
             src="https://resume.io/assets/landing/home/letter-maker/visual-13cdbab63916313dab4caff704097bae2aafc990be5e86f9cc50260bffe6bc75.svg"
             alt=""
           />
+        <div className="card-container">
+          <CardAnimation />
+        </div>
         </section>
-
         <section className="join section">
           <h2>
             Join over <mark>32,268,000 </mark>
@@ -196,6 +198,7 @@ const Home = () => {
           <Link to="/resumes">
             <button className="button">Create My Resume</button>
           </Link>
+          
         </section>
 
         <footer id="contact" className="footer">
@@ -331,9 +334,7 @@ const Home = () => {
           </div>
         </footer>
 
-        <div className="card-container">
-          <CardAnimation />
-        </div>
+        
       </div>
     </>
   );

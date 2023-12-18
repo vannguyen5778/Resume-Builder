@@ -15,12 +15,12 @@ const CardAnimation = () => {
     0% {
       transform: translate(${
         initialX * 400 + 50
-      }px, -1800px) rotateY(0deg);
+      }px, -550px) rotateY(0deg);
     }        
     100% {
       transform: translate(${
         initialX * 400  + 50
-      }px, -1100px) rotateY(360deg);
+      }px, 200px) rotateY(360deg);
     }
   `;
 
