@@ -20,9 +20,22 @@ export const resumes = createSlice({
     },
 
     addResume(state, action) {
-      state.resumes.push({ ...action.payload, data: defaultForm });
-      state.forms = defaultForm;
+      const resumeId = action.payload;
+      if (!state.resumes.some((resume) => resume.id === resumeId)) {
+        const newResume = {
+          id: resumeId,
+          lastUpdate: convertUnixtoDate(Date.now()),
+          data: defaultForm,
+          imgUrl: "",
+          title: "Untitled",
+        };
+
+        state.resumes.push(newResume);
+        console.log(state.resumes.length);
+        state.forms = newResume.data;
+      }
     },
+
     setForms(state, action) {
       state.forms = action.payload;
     },
@@ -39,25 +52,37 @@ export const resumes = createSlice({
         (obj) => obj.id !== action.payload.id
       );
     },
-   
+
     setResume(state, action) {
       const resumeId = action.payload;
-      const resume = state.resumes.find((resume) => resume.id === Number(resumeId));
+      const resume = state.resumes.find(
+        (resume) => resume.id === Number(resumeId)
+      );
       state.forms = resume.data;
     },
 
     saveResume(state, action) {
-      const resumeId = action.payload;
-      const resume = state.resumes.find((resume) => resume.id === Number(resumeId));      
-      resume.data = state.forms;
-      resume.lastUpdate = convertUnixtoDate(Date.now());
+      const [resumeId, imgUrl] = action.payload;
+      const resume = state.resumes.filter(
+        (resume) => resume.id === Number(resumeId)
+      );
+      if (resume) {
+        resume[0].data = state.forms;
+        resume[0].imgUrl = imgUrl;
+        resume[0].lastUpdate = convertUnixtoDate(Date.now());
+        const uniqueArr = [...new Set(state.resumes)];
+        state.resumes = uniqueArr;
+      } else {
+        console.log("no resume found");
+      }
     },
-    
+
     updateResumeTitle(state, action) {
       const [resumeId, value] = action.payload;
-      const resume = state.resumes.find((resume) => resume.id === Number(resumeId));
+      const resume = state.resumes.find(
+        (resume) => resume.id === Number(resumeId)
+      );
       resume["title"] = value;
-
     },
     deleteFormItem(state, action) {
       const [formId, subItemId] = action.payload;

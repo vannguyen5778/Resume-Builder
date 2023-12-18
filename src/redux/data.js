@@ -186,7 +186,7 @@ export const emptyForm = [
 
 export const emptyResume = {
   id: null,
-  title: "",
+  title: "Untitled",
   imgUrl: "",
   lastUpdate: "",
   data: emptyForm,
