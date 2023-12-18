@@ -4,16 +4,18 @@ import { useDispatch, useSelector } from "react-redux";
 import styles from "./Display.module.scss";
 import { clearResume, loadExample } from "../../../redux/resumeSlice";
 import downloadPdf from "../../../utils/downloadPDF";
+import useWindowDimensions from "../../../hooks/useWindowDimensions";
+import PropTypes from "prop-types";
 
-
-const Display = () => {
+const Display = ({isPreviewedState}) => {
   const { forms } = useSelector((state) => state.resumes);
+  const { width } = useWindowDimensions();
+  const isHidden = (width <= 1080) ? styles.isHidden : '';
+  const isPreviewedRoot = ( isPreviewedState) ? styles.isPreviewedRoot : '';
+  const isPreviewedTopSection = ( isPreviewedState) ? styles.isPreviewedTopSection : '';
+  const isPreviewedBtn = (isPreviewedState) ? styles.isPreviewedBtn : '';
 
   const dispatch = useDispatch();
-
-  
-   
-
 
   const personalInfoForm = forms.find(
     (formEl) => formEl.content === "Personal Details"
@@ -23,7 +25,7 @@ const Display = () => {
     const { content, start, end, degree, description } = form;
 
     return (
-      <>
+      <div className={styles.edit}>
         <div className={styles.flexbox}>
           <div className={styles.bold}>{content}</div>
           <div className={styles.time}>
@@ -41,7 +43,7 @@ const Display = () => {
               </li>
             ))}
         </ul>
-      </>
+      </div>
     );
   };
   const experienceSnippet = (form) => {
@@ -125,9 +127,9 @@ const Display = () => {
   };
 
   return (
-    <div className={styles.root}>
-      <div className={styles.topSection}>
-        <div className={styles.toggle}>
+    <div className={`${styles.root} ${isHidden} ${isPreviewedRoot}`}>
+      <div className={`${styles.topSection}  ${isPreviewedTopSection}`}>
+        {!isPreviewedState && <div className={styles.toggle}>
           <button
             className={styles.clearResume}
             onClick={() => dispatch(clearResume())}
@@ -141,16 +143,16 @@ const Display = () => {
           >
             Load Example
           </button>
-        </div>
+        </div>}
         <button
-          className={styles.button}
+          className={`${styles.button}  ${isPreviewedBtn}`}
           onClick={() => downloadPdf("canva", "hiredResume")}
         >
           Download PDF
         </button>
       </div>
       <div id="canva" className={styles.canva}>
-        {/* <img src={image} alt="" /> */}
+        
         <div className={styles.resumeCtn} id="resumeCtn">
           <header>
             <h1 className={styles.fullName} id="fullName">
@@ -170,53 +172,76 @@ const Display = () => {
             switch (form.content) {
               case "Experience":
                 return (
-                  <div key={form.id} className={sectionClassName}>
+                  <div
+                    key={form.id.toString() + form.content}
+                    className={sectionClassName}
+                  >
                     <h4 className={styles.section__header}>
                       {form.content.toUpperCase()}
                     </h4>
-                    {form.subItems.map((subItem) => experienceSnippet(subItem))}
+                    {form.subItems.map((subItem) => (
+                      <div key={subItem.id}>{experienceSnippet(subItem)}</div>
+                    ))}
                   </div>
                 );
 
               case "Education":
                 return (
-                  <div key={form.id} className={sectionClassName}>
+                  <div
+                    key={form.id.toString() + form.content}
+                    className={sectionClassName}
+                  >
                     <h4 className={styles.section__header}>
                       {form.content.toUpperCase()}
                     </h4>
-                    {form.subItems.map((subItem) => eduSnippet(subItem))}
+                    {form.subItems.map((subItem) => (
+                      <div key={subItem.id}>{eduSnippet(subItem)}</div>
+                    ))}
                   </div>
                 );
 
               case "Projects":
                 return (
-                  <div key={form.id} className={sectionClassName}>
+                  <div
+                    key={form.id.toString() + form.content}
+                    className={sectionClassName}
+                  >
                     <h4 className={styles.section__header}>
                       {form.content.toUpperCase()}
                     </h4>
-                    {form.subItems.map((subItem) => projectsSnippet(subItem))}
+                    {form.subItems.map((subItem) => (
+                      <div key={subItem.id}>{projectsSnippet(subItem)}</div>
+                    ))}
                   </div>
                 );
 
               case "Skills":
                 return (
-                  <div key={form.id} className={sectionClassName}>
+                  <div
+                    key={form.id.toString() + form.content}
+                    className={sectionClassName}
+                  >
                     <h4 className={styles.section__header}>
                       {form.content.toUpperCase()}
                     </h4>
-                    {form.subItems.map((subItem) => skillsSnippet(subItem))}
+                    {form.subItems.map((subItem) => (
+                      <div key={subItem.id}>{skillsSnippet(subItem)}</div>
+                    ))}
                   </div>
                 );
 
               case "Certificates":
                 return (
-                  <div key={form.id} className={sectionClassName}>
+                  <div
+                    key={form.id.toString() + form.content}
+                    className={sectionClassName}
+                  >
                     <h4 className={styles.section__header}>
                       {form.content.toUpperCase()}
                     </h4>
-                    {form.subItems.map((subItem) =>
-                      certificatesSnippet(subItem)
-                    )}
+                    {form.subItems.map((subItem) => (
+                      <div key={subItem.id}>{certificatesSnippet(subItem)}</div>
+                    ))}
                   </div>
                 );
 
@@ -231,3 +256,7 @@ const Display = () => {
 };
 
 export default Display;
+
+Display.propTypes = {
+  isPreviewedState: PropTypes.boolean,
+}

@@ -4,8 +4,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { setForms } from "../../../redux/resumeSlice";
 import { PersonalInfo } from "../../../components/InputFields";
 import React from "react";
+import PropTypes from "prop-types";
 
-const Forms = () => {
+const Forms = ({isPreviewedState}) => {
   const forms = useSelector((state) => state.resumes.forms);
   const dispatch = useDispatch();
   const reorder = (list, startIndex, endIndex) => {
@@ -50,7 +51,7 @@ const Forms = () => {
   };
 
   return (
-    <div className="forms">
+    <div className={`forms ${isPreviewedState ? "isPreviewed" : ""}`}>
       <PersonalInfo />
       <DragDropContext onDragEnd={onDragEnd}>
         <Droppable droppableId="droppable" type="droppableItem">
@@ -78,3 +79,7 @@ const Forms = () => {
 };
 
 export default Forms;
+
+Forms.propTypes = {
+  isPreviewedState: PropTypes.boolean 
+}
