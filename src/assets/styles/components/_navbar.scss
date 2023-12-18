@@ -3,13 +3,12 @@ nav {
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
   position: fixed;
   z-index: 999;
-  width: 100vw;
-  max-width: 100%;
+  min-width: 100%;
   height: 80px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: 17px;
+  font-size: 16px;
   .user-circle {
     width: 32px;
     height: 32px;
@@ -19,10 +18,12 @@ nav {
     align-items: center;
     margin: 0 20px;
     background-color: rgb(237, 235, 235);
-    &:hover{border: 2px solid $blue;}
+    &:hover {
+      border: 2px solid $blue;
+    }
     .user-i {
       font-size: 14px;
-      opacity: .3;
+      opacity: 0.3;
     }
   }
 
@@ -30,56 +31,60 @@ nav {
     width: 90px;
     padding: 5px;
     margin-left: 20px;
-
   }
-  
-  ul {
+  .menu-wrapper {
+    justify-content: center;
+    align-items: center;
     display: flex;
-    margin-left: auto;
-    gap: 36px;
-    font-weight: 600;
-    text-transform: capitalize;
-    li {
-      cursor: pointer;
-      transition: color 0.3s ease;
-      &:hover {
-        color: $dark-blue;
-      }
-    }
-  }
-  .registration {
-    padding: 0 10px 0 70px;
-    button {
-      border: none;
-      padding: 12px 20px;
-      border-radius: 5px;
-      text-align: center;
-      font-size: 17px;
+   
 
-      & + button {
-        margin-left: 10px;
-      }
-      &.login {
-        background-color: inherit;
-        color: $blue;
+    ul {
+      display: flex;
+      margin-left: auto;
+      gap: 36px;
+      font-weight: 600;
+      text-transform: capitalize;
+      li {
+        cursor: pointer;
+        transition: color 0.3s ease;
         &:hover {
           color: $dark-blue;
         }
       }
-      &.signup {
-        margin-right: 40px;
-        background-color: $blue;
-        color: white;
-        font-weight: 700;
-        transition: background-color 0.3s ease;
-        &:hover {
-          background-color: $dark-blue;
+    }
+    .registration {
+      padding: 0 10px 0 70px;
+      button {
+        border: none;
+        padding: 12px 20px;
+        border-radius: 5px;
+        text-align: center;
+        font-size: 15px;
+
+        & + button {
+          margin-left: 10px;
+        }
+        &.login {
+          background-color: inherit;
+          color: $blue;
+          &:hover {
+            color: $dark-blue;
+          }
+        }
+        &.signup {
+          margin-right: 40px;
+          background-color: $blue;
+          color: white;
+          font-weight: 700;
+          transition: background-color 0.3s ease;
+          &:hover {
+            background-color: $dark-blue;
+          }
         }
       }
     }
   }
 }
-
 
 .white {
   background-color: #fff;
