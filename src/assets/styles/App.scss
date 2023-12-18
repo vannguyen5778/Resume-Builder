@@ -174,9 +174,11 @@
             font-size: 12px;
           }
         }
+
         .detailed-wrapper {
+          max-width: 850px;
           .swiper {
-            max-width: 850px;
+            width: 100%;
             height: 260px;
           }
           .swiper-horizontal > .swiper-scrollbar,
@@ -194,7 +196,7 @@
             flex-direction: column;
 
             .individual {
-              width: 230px;
+              max-width: 230px;
 
               .review {
                 .stars {
@@ -204,6 +206,7 @@
                   padding-bottom: 5px;
                   text-overflow: ellipsis;
                   width: 250px;
+
                   overflow: hidden;
                   white-space: nowrap;
                 }
@@ -229,6 +232,7 @@
               display: flex;
               button {
                 max-width: 10px;
+                min-height: 10px;
                 height: 50px;
                 border-radius: 50%;
                 border: none;
@@ -241,7 +245,7 @@
                   color: rgb(0, 0, 0, 0.4);
                 }
                 &.back {
-                  margin-right: 10px;
+                  margin-right: 5px;
                 }
               }
             }
@@ -278,7 +282,7 @@
     .templates {
       background-color: $dark-bg;
       width: 100%;
-      height: 120vh;
+      height: 110vh;
       overflow: hidden;
 
       .template-wrapper {
@@ -420,6 +424,7 @@
     .instructions {
       margin-top: 170px !important;
       height: 100vh;
+      width: 100vw;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -440,117 +445,124 @@
       h2 {
         max-width: 600px;
       }
-
-      .mySwiper {
-        margin-top: 60px;
-        height: 550px;
-        width: 800px;
-        .swiper-pagination-fraction,
-        .swiper-pagination-custom,
-        .swiper-horizontal > .swiper-pagination-bullets,
-        .swiper-pagination-bullets.swiper-pagination-horizontal {
-          top: 0px;
-        }
-
-        .swiper-pagination {
-          position: absolute;
-          top: 0px;
-          margin: 0 auto;
-          width: 100% !important;
-          display: flex;
-          justify-content: space-between;
-        }
-
-        .swiper-pagination-bullet {
-          flex: 1;
-          width: auto;
-          height: 30px;
-          text-align: center;
-          line-height: 30px;
-          font-size: 12px;
-          color: #000;
-          background-color: rgb(240, 243, 250);
-        }
-        .swiper-pagination-bullet-active {
-          opacity: 1 !important;
-          background: #fff !important;
-          .progress {
-            position: absolute;
-            background-color: $blue;
-            border-radius: 5px;
-            height: 3px;
-            top: 0;
-            left: 0;
-            animation-name: progress;
-            animation-play-state: running;
-            animation-duration: 5.5s;
-            animation-timing-function: linear;
-            animation-iteration-count: 1;
-
-            &.paused {
-              animation-play-state: paused;
-            }
-          }
-        }
-
-        .step-box {
-          text-align: start;
-          flex: 1;
-          display: flex;
-          background-color: rgb(240, 243, 250);
-          border-bottom-left-radius: 68px;
-          border-top-right-radius: 45px;
-          gap: 10px;
-          flex-direction: column;
-          justify-content: center;
-          height: 70px;
-          padding: 0 20px;
-          opacity: 0.5;
-          h4 {
-            font-size: 20px;
-          }
-          .time-bar {
-            position: relative;
-            height: 3px;
-            border-radius: 5px;
+      .autoplay-wrap {
+        width: 100%;
+        // padding: 0 20px;
+        .autoplay-wrapper {
+          .mySwiper {
+            margin-top: 60px;
+            height: 550px;
             width: 100%;
-            background-color: rgb(0, 0, 0, 0.1);
-          }
-        }
+            max-width: 800px;
 
-        @keyframes progress {
-          from {
-            width: 0%;
-          }
-          to {
-            width: 100%;
-          }
-        }
-
-        .content-box {
-          background-color: #fff;
-          height: 350px;
-          padding: 100px 50px 20px;
-          display: flex;
-          overflow: hidden;
-
-          .text-wrapper {
-            text-align: start;
-            flex: 1;
-            h4 {
-              font-size: 23px;
-              line-height: 0;
-              font-weight: 800;
-              min-width: 400px;
-              color: $purple;
+            .swiper-pagination-fraction,
+            .swiper-pagination-custom,
+            .swiper-horizontal > .swiper-pagination-bullets,
+            .swiper-pagination-bullets.swiper-pagination-horizontal {
+              top: 0px;
             }
-          }
-          .image {
-            flex: 1;
 
-            img {
-              width: 400px;
-              transform: translate(-10%, -15%);
+            .swiper-pagination {
+              position: absolute;
+              top: 0px;
+              margin: 0 auto;
+              width: 100% !important;
+              display: flex;
+              justify-content: space-between;
+            }
+
+            .swiper-pagination-bullet {
+              flex: 1;
+              width: auto;
+              height: 30px;
+              text-align: center;
+              line-height: 30px;
+              font-size: 12px;
+              color: #000;
+              background-color: rgb(240, 243, 250);
+            }
+            .swiper-pagination-bullet-active {
+              opacity: 1 !important;
+              background: #fff !important;
+              .progress {
+                position: absolute;
+                background-color: $blue;
+                border-radius: 5px;
+                height: 3px;
+                top: 0;
+                left: 0;
+                animation-name: progress;
+                animation-play-state: running;
+                animation-duration: 5.5s;
+                animation-timing-function: linear;
+                animation-iteration-count: 1;
+
+                &.paused {
+                  animation-play-state: paused;
+                }
+              }
+            }
+
+            .step-box {
+              text-align: start;
+              flex: 1;
+              display: flex;
+              background-color: rgb(240, 243, 250);
+              border-bottom-left-radius: 68px;
+              border-top-right-radius: 45px;
+              gap: 10px;
+              flex-direction: column;
+              justify-content: center;
+              height: 70px;
+              padding: 0 20px;
+              opacity: 0.5;
+              h4 {
+                font-size: 20px;
+              }
+              .time-bar {
+                position: relative;
+                height: 3px;
+                border-radius: 5px;
+                width: 100%;
+                background-color: rgb(0, 0, 0, 0.1);
+              }
+            }
+
+            @keyframes progress {
+              from {
+                width: 0%;
+              }
+              to {
+                width: 100%;
+              }
+            }
+
+            .content-box {
+              background-color: #fff;
+              height: 350px;
+              padding: 100px 50px 20px;
+              display: flex;
+              overflow: hidden;
+
+              .text-wrapper {
+                text-align: start;
+                flex: 1;
+                h4 {
+                  font-size: 23px;
+                  line-height: 0;
+                  font-weight: 800;
+                  min-width: 400px;
+                  color: $purple;
+                }
+              }
+              .image {
+                flex: 1;
+
+                img {
+                  width: 400px;
+                  transform: translate(-10%, -15%);
+                }
+              }
             }
           }
         }
@@ -589,6 +601,8 @@
       justify-content: center;
       flex-direction: column;
       padding: 30px;
+      user-select: none;
+
       .top {
         margin: 0 auto;
         display: flex;
@@ -687,8 +701,10 @@
     }
 
     .card-container {
+      align-self: flex-end;
       position: relative;
       perspective: 8000px;
+      background-color: $dark-bg;
       :nth-child(1) {
         animation-delay: 1s;
       }
@@ -1135,6 +1151,7 @@ form {
     background-color: inherit;
   }
 }
+
 @media (max-width: 1200px) {
   .home .callToAction {
     padding: 120px 100px !important;
@@ -1154,11 +1171,6 @@ form {
   }
   .app .home .footer .top {
     justify-content: center;
-  }
-}
-@media (max-width: 450px) {
-  .app .resume .forms .form {
-    width: 350px;
   }
 }
 
@@ -1249,6 +1261,20 @@ form {
   .app .home .footer .top {
     gap: 50px;
   }
+
+  .detailed-wrapper {
+    width: 600px;
+    .detailed {
+      .individual {
+        width: 170px;
+        .review {
+          .short-desc {
+            width: 170px !important;
+          }
+        }
+      }
+    }
+  }
 }
 
 @media (max-width: 734px) {
@@ -1285,6 +1311,35 @@ form {
       min-height: 80px !important;
       flex-wrap: wrap;
       justify-content: center !important;
+    }
+  }
+  .app .home .instructions {
+    padding: 0 10px;
+    .autoplay-wrap {
+      padding: 0 30px;
+
+      overflow: hidden;
+      .mySwiper {
+        .swiper-pagination {
+          display: none !important;
+        }
+        .content-box {
+          padding: 16px !important;
+          align-items: start;
+          height: 250px !important;
+          border-radius: 10px;
+         
+          h3 {
+            padding-bottom: 20px;
+            font-size: 20px;
+            font-weight: 700;
+          }
+
+          h4 {
+            font-size: 18px !important;
+          }
+        }
+      }
     }
   }
 }
@@ -1407,9 +1462,52 @@ form {
       }
     }
   }
+
+  .detailed-wrapper {
+    width: 500px;
+
+    .detailed {
+      .individual {
+        width: 190px;
+        .review {
+          font-size: 12px;
+
+          .short-desc {
+            width: 190px !important;
+            font-size: 16px;
+          }
+        }
+      }
+    }
+  }
 }
 
+@media (max-width: 570px) {
+  .button-wrapper {
+    .back {
+      margin-right: 0 !important;
+    }
+  }
+  .detailed-wrapper {
+    width: 400px;
+
+    .detailed {
+      .individual {
+        width: 170px;
+        .review {
+          .short-desc {
+            width: 170px !important;
+          }
+        }
+      }
+    }
+  }
+}
 @media (max-width: 450px) {
+  .app .resume .forms .form {
+    width: 350px;
+  }
+
   main {
     display: flex;
     flex-direction: column;

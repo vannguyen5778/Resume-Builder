@@ -1,8 +1,11 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
+import 'swiper/scss/pagination';
+import 'swiper/scss';
 import createdIMG from "../../assets/images/create.png";
 import downloadIMG from "../../assets/images/downloadIMG.png";
 import { useEffect, useRef, useState } from "react";
+import useWindowDimensions from "../../hooks/useWindowDimensions";
 
 const instructions = [
   {
@@ -36,6 +39,7 @@ const AutoplaySlider = () => {
   const autoplayRef = useRef(null);
   const autoplayWrapperRef = useRef(null);
   const [isElementVisible, setElementVisible] = useState();
+  const {width} = useWindowDimensions();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -58,6 +62,7 @@ const AutoplaySlider = () => {
     }
   }, [isElementVisible]);
 
+
   return (
     <div ref={autoplayWrapperRef} className="autoplay-wrapper">
       <Swiper
@@ -67,6 +72,7 @@ const AutoplaySlider = () => {
           delay: 5000,
           disableOnInteraction: false,
         }}
+      
         pagination={{
           el: ".swiper-pagination",
           clickable: true,
@@ -93,17 +99,19 @@ const AutoplaySlider = () => {
             <SwiperSlide key={index}>
               <div className="content-box">
                 <div className="text-wrapper">
+             {(width < 734) &&<h3>{index + 1}. {instructions[index].tabName}</h3>} 
                   <h4>{instruction.boxTitle}</h4>
                   <p className="description">{instruction.boxContent}</p>
                 </div>
-                <div className="image">
+                {width >= 734 && <div className="image">
                   <img src={instruction.url} alt="" />
-                </div>
+                </div>}
               </div>
             </SwiperSlide>
           ))}
         </div>
         <div className="swiper-pagination"></div>
+        
         <div className="time-bar">
           <div ref={progressBarRef} className={`progress`}></div>
         </div>
