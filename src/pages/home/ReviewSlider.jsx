@@ -1,17 +1,19 @@
 import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { useRef } from "react";
+import useWindowDimensions from "../../hooks/useWindowDimensions";
 
 const ReviewSlider = () => {
   const navigationPrevRef = useRef(null);
   const navigationNextRef = useRef(null);
+  const { width } = useWindowDimensions();
   return (
     <Swiper
       className="detailed"
       modules={[Navigation, Pagination, Scrollbar, A11y]}
-      spaceBetween={60}
+      spaceBetween={width > 620 ? 60 : 0}
       loop={true}
-      slidesPerView={3}
+      slidesPerView={width > 650 ? 3 : 2}
       navigation={{
         prevEl: navigationPrevRef.current,
         nextEl: navigationNextRef.current,
