@@ -1,0 +1,181 @@
+.resume {
+    display: flex;
+    background-color: $light-bg;
+    width: 50%;
+    height: 100%;
+    position: relative;
+    .display-wrapper {
+      position: relative;
+    }
+    .preview-resume {
+      @include button;
+      display: flex;
+      position: fixed;
+      align-items: center;
+      justify-content: center;
+      width: 210px;
+      height: 55px;
+      border-radius: 30px;
+      bottom: 30px;
+      right: 20px;
+      span {
+        color: #fff;
+        font-weight: 700;
+        font-size: 16px;
+        padding-right: 10px;
+        letter-spacing: -1px;
+      }
+      svg {
+        font-size: 24px;
+      }
+      &.shrinked {
+        width: 55px;
+        border-radius: 50%;
+      }
+    }
+    .return-back {
+      width: 110px;
+      display: flex;
+      position: absolute;
+      height: 30px;
+      top: 20px;
+      left: 130px;
+      z-index: 6;
+      text-transform: uppercase;
+      background-color: #8a91e0;
+      color: #fff;
+      border: none;
+      padding: 10px;
+      align-items: center;
+      border-radius: 2px;
+      font-weight: 800;
+      font-size: 12px;
+      margin: 0 auto;
+      transition: all 0.2s ease-in-out;
+      &:hover {
+        background-color: #4e3cf3;
+      }
+      .return-i {
+        padding-right: 25px;
+      }
+      &.preview {
+        left: 10px;
+        top: 15px;
+        width: 200px;
+        background-color: inherit;
+        .return-i {
+          padding-right: 15px;
+        }
+        &:hover {
+          opacity: 0.6;
+        }
+      }
+    }
+    .forms {
+      width: 50%;
+      flex: 1;
+      padding: 20px 30px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 30px;
+
+      &:first-of-type {
+        padding: 70px 30px;
+      }
+      .form {
+        background-color: #fff;
+        position: relative;
+        border-radius: 4px;
+        padding: 30px;
+        width: 450px;
+        .drag-dots {
+          img {
+            width: 20px;
+            height: 20px;
+          }
+          filter: invert(28%) sepia(32%) saturate(1452%) hue-rotate(228deg)
+            brightness(100%) contrast(96%);
+          position: absolute;
+          left: 10px;
+          top: 31px;
+        }
+        .header {
+          display: flex;
+          justify-content: space-between;
+          .add-item {
+            color: #6a59ff;
+            font-size: 20px;
+            cursor: pointer;
+          }
+        }
+
+        h3 {
+          color: $dark-purple;
+          &.title {
+            font-weight: 800;
+
+            padding-bottom: 16px;
+          }
+        }
+        .items {
+          display: flex;
+          flex-direction: column;
+          gap: 12px;
+          .items-wrapper {
+            display: flex;
+            flex-direction: column;
+            border: 2px solid rgb(243, 244, 255);
+            border-radius: 4px;
+            .item {
+              display: flex;
+              width: 100%;
+              justify-content: space-between;
+              align-items: center;
+              user-select: none;
+              border-radius: 4px;
+              background-color: #f3f4ff;
+              position: relative;
+              &:hover .drag-dots {
+                opacity: 0.3;
+              }
+              &:hover .trash-can {
+                opacity: 0.1;
+              }
+              .drag-dots {
+                position: absolute;
+                left: -20px;
+                top: 21px;
+                transition: all 0.2s ease-in;
+                opacity: 0;
+              }
+              .trash-can {
+                position: absolute;
+                right: -20px;
+                top: 22px;
+                opacity: 0;
+                transition: all 0.3s ease-in;
+              }
+              .item-name {
+                color: $dark-purple;
+                font-weight: 800;
+                user-select: none;
+                padding: 20px 15px;
+              }
+              .chevron {
+                font-size: 14px;
+                color: rgba(37, 41, 94, 0.5);
+                user-select: none;
+                padding: 20px 15px;
+              }
+            }
+          }
+        }
+      }
+      &.isPreviewed {
+        display: none;
+      }
+    }
+  }

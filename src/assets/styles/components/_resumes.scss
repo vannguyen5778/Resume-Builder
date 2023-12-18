@@ -1,0 +1,135 @@
+.resumes {
+    color: black;
+    padding: 100px 20px;
+    margin: 0 auto;
+    width: 75%;
+    header {
+      display: flex;
+      justify-content: space-between;
+      padding: 20px 0;
+      border-bottom: 1px solid $light-bg;
+      align-items: baseline;
+
+      h2 {
+        font-weight: 700;
+        svg {
+          padding-left: 10px;
+          opacity: 0.3;
+        }
+      }
+    }
+    button {
+      @include button;
+      padding: 10px 15px;
+      font-size: 16px;
+      font-weight: 700;
+      .plus-icon {
+        padding-right: 10px;
+      }
+    }
+    main {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(300px, 1fr));
+      grid-column-gap: 20px;
+      grid-row-gap: 20px;
+      .resume-wrapper {
+        display: flex;
+        gap: 25px;
+        padding: 50px 0;
+        .preview-img {
+          width: 150px;
+          height: 200px;
+          border-radius: 3px;
+          border: 1px solid $light-bg;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          cursor: pointer;
+          overflow: hidden;
+          img {
+            width: 150px;
+            height: 200px;
+          }
+
+          .preview-i {
+            font-size: 36px;
+            opacity: 0.2;
+            transition: all 0.2s ease-in;
+            &:hover {
+              transform: scale(1.2);
+              color: $blue;
+              opacity: 1;
+            }
+          }
+        }
+        .text-block {
+          display: flex;
+          max-width: 200px;
+          flex-direction: column;
+          justify-content: space-between;
+
+          .top {
+            .title-wrapper {
+              display: flex;
+              align-items: center;
+
+              &:hover .pen-i {
+                opacity: 0.2;
+              }
+              .input-wrapper {
+                width: 50px;
+
+                .resumeTitle {
+                  border: none;
+                  width: 100%;
+                  border-bottom: 2px solid $blue;
+                  min-width: 70px !important;
+                  &:hover {
+                    color: #000;
+                  }
+                }
+              }
+
+              .pen-i {
+                font-size: 16px;
+                padding-left: 4px;
+                color: #000 !important;
+                opacity: 0;
+                &:hover {
+                  color: $blue !important;
+                  opacity: 0.8;
+                }
+              }
+              .title {
+                font-weight: 400;
+                font-size: 19px;
+                cursor: pointer;
+                text-transform: capitalize;
+
+                &:hover {
+                  color: $blue;
+                }
+              }
+            }
+
+            &.new {
+              opacity: 0.6;
+            }
+          }
+          .functionalities {
+            li {
+              padding-bottom: 10px;
+              &:hover {
+                color: $blue;
+              }
+
+              .func-i {
+                color: $blue;
+                padding-right: 5px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }

@@ -1,0 +1,30 @@
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 16px;
+    button {
+      padding: 8px 20px;
+      border-radius: 2px;
+      font-weight: 600;
+      outline: none;
+      border: none;
+      background-color: inherit;
+    }
+  
+    .white {
+      border: 1px solid #6e6e6e;
+      background-color: #fff;
+    }
+  
+    .blue {
+      border: none;
+      color: #fff;
+      background-color: #24a0ed;
+    }
+  
+    button {
+      outline: none;
+      border: none;
+      background-color: inherit;
+    }
+  }
