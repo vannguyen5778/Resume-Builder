@@ -9,7 +9,6 @@ import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
 import { deleteFormItem, setIsExpanded } from "../redux/resumeSlice";
 import { FormField } from "./InputFields";
-// import { useCallback } from "react";
 
 const FormItems = ({ subItems, type, formTitle }) => {
   const dispatch = useDispatch();

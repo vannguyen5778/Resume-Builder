@@ -1,10 +1,6 @@
 @import "../../../assets/styles/variables";
 @import url("https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700;1,800&display=swap");
 
-@font-face {
-  font-family: "EB Garamond";
-  src: url("https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700;1,800&display=swap");
-}
 .root {
   flex: 1;
   width: 50%;
@@ -139,6 +135,14 @@
     background-color: black;
   }
 }
+.isHidden {
+  display: none;
+}
+
+.isPreviewedRoot {
+  display: flex;
+  width: 100%;
+}
 
 .flexbox {
   display: flex;
@@ -171,4 +175,25 @@
 .start,
 .end {
   font-size: 9px !important;
+}
+
+.isPreviewedTopSection {
+  background-color: $dark-bg;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  padding-top: 0 !important;
+  height: 60px;
+  justify-content: end !important;
+}
+
+.isPreviewedBtn {
+  margin: 0 auto !important;
+}
+
+@media (max-width: 517px) {
+  .isPreviewedBtn {
+    margin: 0 !important;
+    margin-right: 20px !important;
+  }
 }

@@ -3,15 +3,7 @@ import { Autoplay, Pagination } from "swiper/modules";
 import createdIMG from "../../assets/images/create.png";
 import downloadIMG from "../../assets/images/downloadIMG.png";
 import { useEffect, useRef, useState } from "react";
-import { useInView } from "react-intersection-observer";
-import { motion, useAnimation } from "framer-motion";
 
-const progressBarAnimation = {
-  hidden: {
-    width: 0,
-  },
-  visible: {},
-};
 const instructions = [
   {
     id: "1",
@@ -38,6 +30,7 @@ const instructions = [
     url: downloadIMG,
   },
 ];
+
 const AutoplaySlider = () => {
   const progressBarRef = useRef(null);
   const autoplayRef = useRef(null);
@@ -50,9 +43,7 @@ const AutoplaySlider = () => {
         const entry = entries[0];
         setElementVisible(entry.isIntersecting);
       },
-      {
-        // threshold: .7,
-      }
+      
     );
     observer.observe(autoplayWrapperRef.current);
   }, []);
@@ -60,15 +51,12 @@ const AutoplaySlider = () => {
   useEffect(() => {
     if (isElementVisible) {
       autoplayRef.current.autoplay.start();
-      progressBarRef.current.style.animationPlayState = 'running';
-
+      progressBarRef.current.style.animationPlayState = "running";
     } else {
       autoplayRef.current.autoplay.stop();
-      progressBarRef.current.style.animationPlayState = 'paused';
+      progressBarRef.current.style.animationPlayState = "paused";
     }
   }, [isElementVisible]);
-
-
 
   return (
     <div ref={autoplayWrapperRef} className="autoplay-wrapper">

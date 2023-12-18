@@ -7,7 +7,7 @@ import { addFormItem } from "../redux/resumeSlice";
 import { useDispatch } from "react-redux";
 
 const Form = ({
-  key,
+ 
   draggableId,
   index,
   formTitle,
@@ -64,7 +64,6 @@ const Form = ({
 export default Form;
 
 Form.propTypes = {
-  key: PropTypes.number,
   draggableId: PropTypes.string,
   index: PropTypes.number,
   formTitle: PropTypes.string,
