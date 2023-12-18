@@ -19,12 +19,30 @@ import CardAnimation from "./Animations";
 import { motion } from "framer-motion";
 import Navbar from "../../components/Navbar";
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
+import { useState } from "react";
+import useWindowDimensions from "../../hooks/useWindowDimensions";
 
 const Home = () => {
   const slidingImg = {
     hidden: { y: "320px", opacity: 0 },
 
     show: { y: 0, opacity: 1 },
+  };
+  const { width } = useWindowDimensions();
+  const [footerExpand, setFooterExpand] = useState([
+    false,
+    false,
+    false,
+    false,
+  ]);
+  const handleExpand = (index) => {
+    setFooterExpand((prevExpand) => {
+      const newExpand = [...prevExpand];
+      newExpand[index] = !newExpand[index];
+      return newExpand;
+    });
   };
   return (
     <>
@@ -143,7 +161,13 @@ const Home = () => {
 
         <section id="reviews" className="callToAction ">
           <div className="content-wrapper ">
-            <h2>User-friendly.<br />Professional.<br />Effective.</h2>
+            <h2>
+              User-friendly.{" "}
+              <br />
+              Professional.{" "}
+              <br />
+              Effective.
+            </h2>
             <p className="description">
               How long does it take to write a resume? Hours? Days? With our
               resume maker you can be done in minutes. Create a convincing and
@@ -162,10 +186,10 @@ const Home = () => {
         </section>
 
         <section className="join section">
-          <h1>
+          <h2>
             Join over <mark>32,268,000 </mark>
             users worldwide
-          </h1>
+          </h2>
           <p className="description">
             Start for free — try our resume builder now
           </p>
@@ -186,6 +210,7 @@ const Home = () => {
                   />
                 </span>
                 <span className="pinterest">
+                  {" "}
                   <img
                     src="https://resume.io/assets/landing/footer/pinterest-3ff483f03a3e2f1027c7f7acd8d19c776e59885edfdf98eb853423f67f81efd3.svg"
                     alt="pinterest log"
@@ -205,10 +230,21 @@ const Home = () => {
                 </span>
               </div>
             </div>
+
             <div className="categories">
-              <div className="category">
-                <p className="title">Job seekers</p>
-                <ul>
+              <div className="category"onClick={() => handleExpand(0)}>
+                <p className="title">
+                  Job seekers{" "}
+                  {width <= 650 && (
+                    <FontAwesomeIcon
+                      className="footer-chevron"
+                      
+                      icon={footerExpand[0] ? faChevronUp : faChevronDown}
+                    />
+                  )}
+                </p>
+                <ul className={`${footerExpand[0] ? "" : "hidden"}`}>
+
                   <li>Create a Resume</li>
                   <li> Resume Examples</li>
                   <li>Resume Templates</li>
@@ -216,9 +252,19 @@ const Home = () => {
                   <li>Job Search</li>
                 </ul>
               </div>
-              <div className="category">
-                <p className="title">CAREER RESOURCES</p>
-                <ul>
+              <div className="category"onClick={() => handleExpand(1)}>
+                <p className="title">
+                  CAREER RESOURCES{" "}
+                  {width <= 650 && (
+                    <FontAwesomeIcon
+                      className="footer-chevron"
+                      
+                      icon={footerExpand[1] ? faChevronUp : faChevronDown}
+                    />
+                  )}
+                </p>
+                <ul className={`${footerExpand[1] ? "" : "hidden"}`}>
+
                   <li>Resume Help</li>
                   <li>Job Interview</li>
                   <li>Career</li>
@@ -227,9 +273,19 @@ const Home = () => {
                 </ul>
               </div>
 
-              <div className="category">
-                <p className="title">OUR COMPANY</p>
-                <ul>
+              <div className="category"onClick={() => handleExpand(2)}>
+                <p className="title">
+                  OUR COMPANY{" "}
+                  {width <= 650 && (
+                    <FontAwesomeIcon
+                      className="footer-chevron"
+                      
+                      icon={footerExpand[2] ? faChevronUp : faChevronDown}
+                    />
+                  )}
+                </p>
+                <ul className={`${footerExpand[2] ? "" : "hidden"}`}>
+
                   <li>About Us</li>
                   <li>Pricing</li>
                   <li>Product Updates</li>
@@ -238,9 +294,18 @@ const Home = () => {
                   <li>Affiliates</li>
                 </ul>
               </div>
-              <div className="category">
-                <p className="title">SUPPORT</p>
-                <ul>
+              <div className="category"onClick={() => handleExpand(3)}>
+                <p className="title">
+                  SUPPORT{" "}
+                  {width <= 650 && (
+                    <FontAwesomeIcon
+                      className="footer-chevron"
+                      
+                      icon={footerExpand[3] ? faChevronUp : faChevronDown}
+                    />
+                  )}
+                </p>
+                <ul className={`${footerExpand[3] ? "" : "hidden"}`}>
                   <li>FAQ</li>
                   <li>Contact Us</li>
                   <li>Terms of Service</li>
@@ -251,17 +316,17 @@ const Home = () => {
             </div>
           </div>
           <div className="bottom">
+            <img
+              className="verified"
+              src="https://resume.io/assets/landing/shared/cprw-c78f635373c794595d7e68d118f7aefb509aee249ff8c516a40cc4e450edcf3c.png"
+              alt=""
+            />
             <p>
               <span>
                 <img src={Logo} alt="flag" />
                 International
               </span>
             </p>
-            <img
-              className="verified"
-              src="https://resume.io/assets/landing/shared/cprw-c78f635373c794595d7e68d118f7aefb509aee249ff8c516a40cc4e450edcf3c.png"
-              alt=""
-            />
             <p className="sm-text copyright">Copyright 2023 • HIRED</p>
           </div>
         </footer>
